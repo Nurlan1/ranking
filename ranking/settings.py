@@ -133,5 +133,5 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-#  Add configuration for static files storage using whitenoise
+#  Add configuration for static files storage using whitenoi se
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
