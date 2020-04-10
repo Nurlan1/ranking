@@ -1,1 +1,1 @@
-web: gunicorn uranking.wsgi --log-file -
+web: gunicorn ranking.wsgi --log-file -
