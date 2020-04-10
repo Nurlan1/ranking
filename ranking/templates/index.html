@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>imagine &mdash; Onepage Template by Colorlib</title>
+    {% load static %}
+    <title>IARC &mdash; </title>
+    <link rel="shortcut icon" href="{% static 'images/logo_title.png' %}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
-    {% load static %}
+
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -25,7 +27,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="width: 95%">
   
 
 <!--  <div id="overlayer"></div>-->
@@ -47,23 +49,23 @@
     </div>
    
    
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" style="marging-bottom:30px; width: 100%">
 
       <div class="container">
         <div class="row align-items-center">
           
           <div class="col-6 col-md-3 col-xl-4  d-block">
-            <img src="{% static 'images/logo.png' %}" class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0"> </a></img>
+            <img src="{% static 'images/logo.png' %}" class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0" style="width:20px"> </a></img>
           </div>
 
           <div class="col-12 col-md-9 col-xl-8 main-menu">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
-                <li><a href="#home-section" class="nav-link">Home</a></li>
-                <li><a href="#features-section" class="nav-link">Features</a></li>
+                <li><a href="#home-section" class="nav-link">Главная</a></li>
+                <li><a href="#features-section" class="nav-link">Услуги</a></li>
                 <li class="has-children">
-                  <a href="#about-section" class="nav-link">About Us</a>
+                  <a href="#about-section" class="nav-link">О нас</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#" target="_blank" class="nav-link"><span class="text-primary">More Free Templates</span></a></li>
                     <li><a href="#our-team-section" class="nav-link">Our Team</a></li>
@@ -77,9 +79,9 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-                <li><a href="#blog-section" class="nav-link">Blog</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                <li><a href="#testimonials-section" class="nav-link">Партнеры</a></li>
+                <li><a href="#blog-section" class="nav-link">Новости</a></li>
+                <li><a href="#contact-section" class="nav-link ">Подать заявку</a></li>
               </ul>
             </nav>
           </div>
@@ -103,10 +105,12 @@
 
             <div class="row mb-4" data-aos="fade-up" data-aos-delay="200">
               <div class="col-lg-6 mr-auto">
-                <h1>Make Your Business More Profitable</h1>
-                <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
+                <h2 class="section-title"">Независимый институт аккредитации, рейтинга и сертификации</h2>
+                <p class="mb-5">
+Аккредитация, рейтинг жана тастыктоочу көз карандысыз институту
+Independent Institute of Accreditation, Rating and Certification</p>
                 <div>
-                  <a href="#" class="btn btn-primary mr-2 mb-2">Get Started</a>
+                  <a href="#contact-section" class="btn btn-primary mr-2 mb-2">Подать заявку</a>
                 </div>
               </div>
               
@@ -123,8 +127,8 @@
       <div class="container">
         <div class="row mb-5 justify-content-center text-center"  data-aos="fade-up">
           <div class="col-7 text-center  mb-5">
-            <h2 class="section-title">Imagine Features</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga quos quaerat sapiente nam, id vero.</p>
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="lead">Независимое агентство аккредитации и рейтинга IAR – ведущее аккредитационное агентство Кыргызской Республики по обеспечению качества образования (основано в 2020 году)</p>
           </div>
         </div>
         <div class="row align-items-stretch">
@@ -132,12 +136,12 @@
             
             <div class="unit-4 d-block">
               <div class="unit-4-icon mb-3">
-                <span class="icon-wrap"><span class="text-primary icon-autorenew"></span></span>
+                <span class="icon-wrap"><span class="text-primary icon-check-circle-o"></span></span>
               </div>
               <div>
-                <h3>Marketing Consulting</h3>
+                <h3>Аккреддитация</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее</a></p>
               </div>
             </div>
 
@@ -146,24 +150,24 @@
 
             <div class="unit-4 d-block">
               <div class="unit-4-icon mb-3">
-                <span class="icon-wrap"><span class="text-primary icon-store_mall_directory"></span></span>
+                <span class="icon-wrap"><span class="text-primary icon-star-half-full"></span></span>
               </div>
               <div>
-                <h3>Market Analysis</h3>
+                <h3>Формирование рейтинга</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее →</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up"  data-aos-delay="200">
             <div class="unit-4 d-block">
               <div class="unit-4-icon mb-3">
-                <span class="icon-wrap"><span class="text-primary icon-shopping_basket"></span></span>
+                <span class="icon-wrap"><span class="text-primary icon-list-alt"></span></span>
               </div>
               <div>
-                <h3>Easy Purchase</h3>
+                <h3>Реестр</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее →</a></p>
               </div>
             </div>
           </div>
@@ -177,7 +181,7 @@
               <div>
                 <h3>Free Updates</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее →</a></p>
               </div>
             </div>
           </div>
@@ -190,7 +194,7 @@
               <div>
                 <h3>100% Satistified</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее →</a></p>
               </div>
             </div>
 
@@ -205,7 +209,7 @@
               <div>
                 <h3>Easy Plugin</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
+                <p><a href="#">Подробнее →</a></p>
               </div>
             </div>
           </div>
@@ -319,7 +323,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">About Us</h2>
+            <h2 class="section-title mb-3">О нас</h2>
           </div>
         </div>
         <div class="row mb-5">
@@ -327,14 +331,14 @@
             <img src="images/undraw_bookmarks_r6up.svg" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-5 ml-auto pl-lg-5">
-            <h2 class="text-black mb-4 h3 font-weight-bold">Our Mission</h2>
-            <p class="mb-4">Eos cumque optio dolores excepturi rerum temporibus magni recusandae eveniet, totam omnis consectetur maxime quibusdam expedita dolorem dolor nobis dicta labore quaerat esse magnam unde, aperiam delectus! At maiores, itaque.</p>
+            <h2 class="text-black mb-4 h3 font-weight-bold">Наша задача</h2>
+            <p class="mb-4">Независимое агентство аккредитации и рейтинга НААР/IAAR – ведущее международное аккредитационное агентство по обеспечению качества образования (основано в 2011 году)</p>
             <ul class="ul-check mb-5 list-unstyled success">
-              <li>Laborum enim quasi at modi</li>
-              <li>Ad at tempore</li>
-              <li>Labore quaerat esse</li>
+              <li>Аккредитация</li>
+              <li>Формирование рейтинга</li>
+              <li>Постмониторинг</li>
             </ul>
-            <p><a href="#" class="btn btn-primary">Learn More</a></p>
+            <p><a href="#" class="btn btn-primary">Подробнее...</a></p>
           </div>
         </div>
 
@@ -472,7 +476,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Testimonials</h2>
+            <h2 class="section-title mb-3">Партнеры</h2>
           </div>
         </div>
       </div>
@@ -544,7 +548,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Blog Posts</h2>
+            <h2 class="section-title mb-3">Новости</h2>
           </div>
         </div>
 
@@ -585,7 +589,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-white">Contact Us</h2>
+            <h2 class="section-title mb-3 text-white">Оставьте заявку</h2>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -595,45 +599,46 @@
 
             <form action="#" class="p-5 bg-white">
               
-              <h2 class="h4 text-black mb-5">Contact Form</h2> 
+              <h2 class="h4 text-black mb-5">Форма заявки</h2>
 
               <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control rounded-0">
-                </div>
                 <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
+                  <label class="text-black" for="lname">Фамилия</label>
                   <input type="text" id="lname" class="form-control rounded-0">
                 </div>
-              </div>
+                <div class="col-md-6 mb-3 mb-md-0">
 
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control rounded-0">
+                  <label class="text-black" for="fname">Имя</label>
+                  <input type="text" id="fname" class="form-control rounded-0">
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <label class="text-black" for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control rounded-0">
+                  <label class="text-black" for="email">Эл.адрес</label>
+                  <input type="email" id="email" class="form-control rounded-0" placeholder="example@mail.com">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="subject">Предмет</label>
+                  <input type="subject" id="subject" class="form-control rounded-0"  >
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control rounded-0" placeholder="Leave your message here..."></textarea>
+                  <label class="text-black" for="message">Текст</label>
+                  <textarea name="message" id="message" cols="30" rows="7" class="form-control rounded-0" placeholder="Ваше текст"></textarea>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary mr-2 mb-2">
+                  <input type="submit" value="Подтвердить" class="btn btn-primary mr-2 mb-2">
                 </div>
               </div>
 
@@ -647,9 +652,17 @@
     </div>
 
     <div class="footer py-5 text-center">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12">
+      <div class="container"style="display: inline-flex; align-content: space-between"  >
+
+      <p>
+        Контакты:
+                <br>Адрес: Кыргызская Республика, г. Бишкек,
+                <br> ул. Курманжан Датка, 207.
+				<br>E-mail: <a class="mail" href="mailto:iarc.institute@gmail.com"> iarc.institute@gmail.com </a>
+				<br>Тел: <a href="tel:+996551779422">+996551779422</a>
+			</p>
+        <div class="row mb-5" style="margin: 0 auto; padding-top: 50px">
+          <div class="col-12" >
             <p class="mb-0">
               <a href="#" class="p-3"><span class="icon-facebook"></span></a>
               <a href="#" class="p-3"><span class="icon-twitter"></span></a>
@@ -659,16 +672,21 @@
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <p class="mb-0">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-        </div>
+
+        <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.398516605417!2d74.62976191547376!3d42.90663557915391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb8292e059ef9%3A0x9b0d0398504f0798!2zMjA3INGD0LsuINCa0YPRgNC80LDQvdC20LDQvSDQlNCw0YLQutCwLCDQkdC40YjQutC10Lo!5e0!3m2!1sru!2skg!4v1586507291627!5m2!1sru!2skg" width="250" height="170" frameborder="0" style="border-color: #0d95e8; border-width :px; border-radius: 20%; " allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
       </div>
+      <div class="row" >
+      <div class="col-md-12">
+            <p class="mb-0">
+
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart text-danger" aria-hidden="true"></i> by <a style="visibility: hidden" href="https://colorlib.com" target="_blank" >Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+
+          </div>
+    </div>
     </div>
   </div> <!-- .site-wrap -->
 
@@ -686,6 +704,7 @@
 
   
   <script src="{% static 'js/main.js' %}"></script>
+
   
   </body>
 </html>
