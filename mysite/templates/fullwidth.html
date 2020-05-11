@@ -1,18 +1,20 @@
 {% extends "base.html" %}
+
 {% load cms_tags staticfiles  %}
 
-{% block title %}{% page_attribute "page_title" %}{% endblock title %}
-
+{% block title %}
+{% page_attribute "page_title" %}{% endblock title %}
 {% block content %}
+
 	{% placeholder content  or%}
 
-      <div class="container" id="{% page_url request.current_page  %}" >
+      <div class="container" id="{% page_url request.current_page  %}"  style=" max-width: 100%; overflow: hidden">
 
         <div class="row align-items-center justify-content-center">
 
-          <div class="col-md-12" style="position: relative;" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-md-12" style="position: relative;" data-aos="fade-up" data-aos-delay="200" >
 
-            <img src="{% static 'images/undraw_investing_7u74.svg' %}" alt="Image" class="img-fluid img-absolute">
+            <img src="{% static 'images/undraw_investing_7u74.svg' %}" alt="Image" class="img-fluid img-absolute" style="size: auto">
 
             <div class="row mb-4" data-aos="fade-up" data-aos-delay="200">
               <div class="col-lg-6 mr-auto">
@@ -30,11 +32,7 @@ Independent Institute of Accreditation, Rating and Certification</p>
 
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <div class="site-section" id="features-section">
+        <div class="site-section" id="features-section">
       <div class="container">
         <div class="row mb-5 justify-content-center text-center"  data-aos="fade-up">
           <div class="col-7 text-center  mb-5">
@@ -228,6 +226,11 @@ Independent Institute of Accreditation, Rating and Certification</p>
         </div>
       </div>
     </div>
+      </div>
+
+
+
+
 
 
     <div class="site-section bg-light" id="about-section">
@@ -495,8 +498,8 @@ Independent Institute of Accreditation, Rating and Certification</p>
         </div>
       </div>
     </div>
-
-    <div class="site-section bg-image2 overlay" id="contact-section" style="background-image: url('{ % static  \42 images/hero_1.jpg\42 %}');">
+{% static "images" as baseUrl %}
+    <div class="site-section bg-image2 overlay" id="contact-section" style="background-image: url('{{baseUrl}}/hero_1.jpg');">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">

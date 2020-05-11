@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles  %}
+
+{%block content%}
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Балл</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>КГТУ им. И. Раззакова</td>
+      <td>100</td>
+      <td>
+      <div class="progress">
+      <div class="progress-bar  bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+    </div>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>КГМА имени И. К. Ахунбаева</td>
+      <td>75</td>
+      <td><div class="progress">
+      <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div>
+    </div></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>КГУСТА им.Н.Исанова</td>
+      <td>50</td>
+      <td><div class="progress">
+
+      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>
+
+    </div></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

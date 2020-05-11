@@ -9,15 +9,19 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
-
+from django.urls import path
+from form.views import form_render_view, ranking_view
 admin.autodiscover()
 
 urlpatterns = [
+    path('en/anketa/', form_render_view),
+    path('en/ranking/', ranking_view),
     url(r'^sitemap\.xml$', sitemap,
-        {'sitemaps': {'cmspages': CMSSitemap}}),
+        {'sitemaps': {'cmspages': CMSSitemap}})
 ]
 
 urlpatterns += i18n_patterns(
+# url(r'^anketa/$','form.views.form_render_view'),
     url(r'^admin/', admin.site.urls),  # NOQA
     url(r'^', include('cms.urls')),
 )

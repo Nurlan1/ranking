@@ -1,8 +1,8 @@
 {% load cms_tags menu_tags sekizai_tags staticfiles %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
-  <head>
-<!--    {% load static %}-->
+<head>
+    <!--    {% load static %}-->
     <title>{% page_attribute 'page_title'%}-IARC </title>
     <link rel="shortcut icon" href="{% static 'images/logo_title.png' %}" type="image/x-icon">
     <meta charset="utf-8">
@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
@@ -27,10 +26,11 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     {% render_block "css" %}
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="width: 95%">
-          {% cms_toolbar %}
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" >
+{% cms_toolbar %}
 
 
 <!--  <div id="overlayer"></div>-->
@@ -40,124 +40,151 @@
 <!--    </div>-->
 <!--  </div>-->
 
-  <div class="site-wrap"  id="home-section">
+<div class="site-wrap" id="home-section">
 
     <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
+        <div class="site-mobile-menu-body"></div>
     </div>
-
+</div>
 
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" style=" width: 100%;">
 
-      <div class="container" style="margin-top: fill">
-        <div class="row align-items-center">
+        <div class="container" style="margin-top: fill">
+            <div class="row align-items-center">
 
-          <div class="col-6 col-md-3 col-xl-4  d-block">
-            <a href="/" class="text-black h2 mb-0" style="width:20px"><img src="{% static 'images/logo.png' %}" class="mb-0 site-logo"> </img></a>
-          </div>
+                <div class="col-6 col-md-3 col-xl-4  d-block">
+                    <a href="/" class="text-black h2 mb-0" style="width:20px"><img src="{% static 'images/logo.png' %}"
+                                                                                   class="mb-0 site-logo"> </img></a>
+                </div>
 
-          <div class="col-12 col-md-9 col-xl-8 main-menu ">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+                <div class="col-12 col-md-9 col-xl-8 main-menu ">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
 
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0 ">
-                 {% show_menu 0 100 100 100 "menu/custom-menu.html" %}
-<!--                <li><a href="#home-section" class="nav-link">Главная</a></li>-->
-<!--                <li><a href="#features-section" class="nav-link">Услуги</a></li>-->
-<!--                <li class="has-children">-->
-<!--                  <a href="#about-section" class="nav-link">О нас</a>-->
-<!--                  <ul class="dropdown arrow-top">-->
-<!--                    <li><a href="#" target="_blank" class="nav-link"><span class="text-primary">More Free Templates</span></a></li>-->
-<!--                    <li><a href="#our-team-section" class="nav-link">Our Team</a></li>-->
-<!--                    <li class="has-children">-->
-<!--                      <a href="#">More Links</a>-->
-<!--                      <ul class="dropdown">-->
-<!--                        <li><a href="#">Menu One</a></li>-->
-<!--                        <li><a href="#">Menu Two</a></li>-->
-<!--                        <li><a href="#">Menu Three</a></li>-->
-<!--                      </ul>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-<!--                <li><a href="#testimonials-section" class="nav-link">Партнеры</a></li>-->
-<!--                <li><a href="#blog-section" class="nav-link">Новости</a></li>-->
-<!--                <li><a href="#contact-section" class="nav-link ">Подать заявку</a></li>-->
-              </ul>
-            </nav>
-          </div>
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0 ">
+                            {% show_menu 0 100 100 100 "menu/custom-menu.html" %}
+
+                        </ul>
+                    </nav>
+                </div>
 
 
-          <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0" ><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
-
+                <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0"><a href="#"
+                                                                                class="site-menu-toggle js-menu-toggle text-black float-right"><span
+                        class="icon-menu h3"></span></a></div>
+            </div>
         </div>
-      </div>
+
+
 
     </header>
 
+<div style="padding-top: 150px">
+{% block content%} {% endblock content %}
+</div>
 
-    <div class="" style="overflow: hidden; ">
-      <div style="margin-top: 250px">
-      {% block content%} {% endblock content %}
-<!--      </div>-->
-    </div> <!-- .site-wrap -->
-    <div class="footer py-5 text-center">
+<div class="footer py-5 text-center">
+    <div class="container" style="display: inline-flex; align-content: space-between">
 
-
-
-      <div class="container"style="display: inline-flex; align-content: space-between"  >
-
-      {% static_placeholder "Footer" %}
+        {% static_placeholder "Footer" %}
         <div class="row mb-5" style="margin: 0 auto; padding-top: 50px ; display: inline-block">
-          <div class="col-12" >
-            <p class="mb-0">
-              <a href="#" class="p-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="p-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="p-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="p-3"><span class="icon-linkedin"></span></a>
-              <a href="#" class="p-3"><span class="icon-pinterest"></span></a>
-            </p>
-          </div>
+            <div class="col-12">
+                <p class="mb-0">
+                    <a href="#" class="p-3"><span class="icon-facebook"></span></a>
+                    <a href="#" class="p-3"><span class="icon-twitter"></span></a>
+                    <a href="#" class="p-3"><span class="icon-instagram"></span></a>
+                    <a href="#" class="p-3"><span class="icon-linkedin"></span></a>
+                    <a href="#" class="p-3"><span class="icon-pinterest"></span></a>
+                </p>
+            </div>
         </div>
 
-        <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.398516605417!2d74.62976191547376!3d42.90663557915391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb8292e059ef9%3A0x9b0d0398504f0798!2zMjA3INGD0LsuINCa0YPRgNC80LDQvdC20LDQvSDQlNCw0YLQutCwLCDQkdC40YjQutC10Lo!5e0!3m2!1sru!2skg!4v1586507291627!5m2!1sru!2skg" width="250" height="170" frameborder="0" style=" display: inline-block; border-color: #0d95e8; border-width :5px; border-radius: 20%; " allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.398516605417!2d74.62976191547376!3d42.90663557915391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb8292e059ef9%3A0x9b0d0398504f0798!2zMjA3INGD0LsuINCa0YPRgNC80LDQvdC20LDQvSDQlNCw0YLQutCwLCDQkdC40YjQutC10Lo!5e0!3m2!1sru!2skg!4v1586507291627!5m2!1sru!2skg"
+                width="250" height="170" frameborder="0"
+                style=" display: inline-block; border-color: #0d95e8; border-width :5px; border-radius: 20%; "
+                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
-      </div>
-      <div class="row" >
-      <div class="col-md-12">
+    </div>
+    <div class="">
+        <div class="col-md-12">
             <p class="mb-0">
 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart text-danger" aria-hidden="true"></i> by <a style="visibility: hidden" href="https://colorlib.com" target="_blank" >Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | <i class="icon-heart text-danger" aria-hidden="true"></i> by <a
+                    style="visibility: hidden" href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
 
-          </div>
+        </div>
     </div>
-    </div>
+</div>
 
 
-  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'js/jquery-ui.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
-  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-  <script src="{% static 'js/aos.js' %}"></script>
-  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
-  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
 
 
-  <script src="{% static 'js/main.js' %}"></script>
-        <script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    // Add the following code if you want the name of the file appear on select
 
-        </script>
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+{% if mes %}
+<script >
+    alert("fafds");
+</script>
+{% endif %}
+<script>
+var delay = 500;
+$(".progress-bar").each(function(i){
+    $(this).delay( delay*i ).animate( { width: $(this).attr('aria-valuenow') + '%' }, delay );
 
-  {% render_block "js" %}
-  </body>
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: delay,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now)+'');
+        }
+    });
+});
+</script>
+<script>
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInp").change(function(){
+    readURL(this);
+});
+</script>
+{% render_block "js" %}
+</body>
 </html>

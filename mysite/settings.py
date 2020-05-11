@@ -93,6 +93,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'mysite', 'static'),
+os.path.join(BASE_DIR, 'mysite', 'media')
 )
 SITE_ID = 1
 
@@ -114,6 +115,7 @@ TEMPLATES = [
                 'sekizai.context_processors.sekizai',
                 'django.template.context_processors.static',
                 'cms.context_processors.cms_settings'
+
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -179,7 +181,8 @@ INSTALLED_APPS = [
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'mysite'
+    'mysite',
+    'form'
 ]
 
 LANGUAGES = (
@@ -209,6 +212,8 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('fullwidth.html', 'Fullwidth'),
+    ('Form.html', 'Анкета'),
+    ('ranking.html', 'Рейтинг'),
     ('sidebar_left.html', 'Sidebar Left'),
     ('sidebar_right.html', 'Sidebar Right')
 )
@@ -217,6 +222,17 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
+# DATABASES = {
+#     'default': {
+#         'CONN_MAX_AGE': 0,
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': 'localhost',
+#         'NAME': 'projectdata',
+#         'PASSWORD': 'admin',
+#         'PORT': '',
+#         'USER': 'admin'
+#     }
+# }
 DATABASES = {
     'default': {
         'CONN_MAX_AGE': 0,
