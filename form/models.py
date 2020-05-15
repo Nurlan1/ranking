@@ -1,6 +1,6 @@
 # from cms.models.pluginmodel import models.Model
 from django.db import models
-
+from django.contrib.auth.models import User
 import datetime
 
 
@@ -10,7 +10,7 @@ import datetime
 class Category(models.Model):
     Id = models.AutoField(primary_key=True)
     Name = models.TextField(null=True)
-    Max_value = models.FloatField(null=True)
+    Max_value = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.Name
@@ -22,7 +22,7 @@ class Category(models.Model):
 class Group(models.Model):
     Id = models.AutoField(primary_key=True)
     Name = models.TextField(null=True)
-    Max_value = models.FloatField(null=True)
+    Max_value = models.FloatField(null=True, blank=True)
     Category_id = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
@@ -51,8 +51,8 @@ class Criteria(models.Model):
     Indicator_id = models.ForeignKey(Indicator, null=True, on_delete=models.SET_NULL)
     Group_id = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL)
     File_Need = models.BooleanField(default=False)
-    Formula = models.TextField(null=True)
-    VariableName = models.TextField(null=True)
+    Formula = models.TextField(null=True, blank=True)
+    VariableName = models.TextField(null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.Name
@@ -90,4 +90,11 @@ class University_Data(models.Model):
 
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE , related_name='info')
+    University_id = models.ForeignKey(University, null=True, on_delete=models.SET_NULL)
+    PhoneNumber = models.TextField(null=True, blank=True)
+    Position = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.user.username
 

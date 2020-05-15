@@ -2,46 +2,88 @@
 {% load cms_tags staticfiles  %}
 
 {%block content%}
+<div style="margin: 0 auto; display: flex; justify-content: space-around; margin-bottom: 15px;">
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            По уровню
+        </button>
+        <div class="dropdown-menu">
+            {% for category in categories %}
+            {% if category.Max_value %}
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/l{{category.Id}}">{{category.Name}}</a>
+            {% endif %}
+            {% endfor %}
 
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Имя</th>
-      <th scope="col">Балл</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>КГТУ им. И. Раззакова</td>
-      <td>100</td>
-      <td>
-      <div class="progress">
-      <div class="progress-bar  bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+        </div>
     </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>КГМА имени И. К. Ахунбаева</td>
-      <td>75</td>
-      <td><div class="progress">
-      <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div>
-    </div></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>КГУСТА им.Н.Исанова</td>
-      <td>50</td>
-      <td><div class="progress">
+    <div class="dropdown">
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+            По критерию
+        </button>
+        <div class="dropdown-menu" style="max-height:350px; max-width: 450px; overflow:auto; margin-left: -50%; ">
+            {% for criteria in criterias %}
+            {% if criteria.Formula %}
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/c{{criteria.Id}}">{{criteria.Name}}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+            По группе
+        </button>
+        <div class="dropdown-menu" style="max-height:350px; max-width: 300px; overflow:auto; margin-left: -50%;">
+            {% for group in groups %}
+            {% if group.Max_value %}
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/g{{group.Id}}">{{ group.Name}}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 
-      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>
-
-    </div></td>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Балл</th>
+        <th scope="col">Handle</th>
     </tr>
-  </tbody>
+    </thead>
+    <tbody>
+    {% for university in uarray %}
+    <tr>
+        <th scope="row"></th>
+        <td>{{ university.Name}}</td>
+        <td>{{university.Value}}</td>
+        <td>
+            <div class="progress">
+                <div class="progress-bar  bg-success" role="progressbar" aria-valuenow="{{university.Value}}"
+                     aria-valuemin="0" aria-valuemax="100">{{university.Value}}
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    <!--<tr>-->
+    <!--<th scope="row">2</th>-->
+    <!--<td>КГМА имени И. К. Ахунбаева</td>-->
+    <!--<td>75</td>-->
+    <!--<td><div class="progress">-->
+    <!--<div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75</div>-->
+    <!--</div></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th scope="row">3</th>-->
+    <!--<td>КГУСТА им.Н.Исанова</td>-->
+    <!--<td>50</td>-->
+    <!--<td><div class="progress">-->
+
+    <!--<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50</div>-->
+
+    <!--</div></td>-->
+    <!--</tr>-->
+    </tbody>
 </table>
 {% endblock content %}

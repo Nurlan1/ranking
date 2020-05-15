@@ -3,8 +3,14 @@
     {% for child in children %}
 <!-- no child pages  -->
         {% if child.is_leaf_node %}
+            {% if child.get_menu_title != 'Анкета'  %}
             <li><a href="{{ child.get_absolute_url }}" class="nav-link{% if request.path == child.get_absolute_url %} active{% endif %} ">{{child.get_menu_title }}  </a>  </li>
+            {% elif  user.info.University_id  %}
+            <li><a href="{{ child.get_absolute_url }}" class="nav-link{% if request.path == child.get_absolute_url %} active{% endif %} ">{{child.get_menu_title }}  </a>  </li>
+
         {% endif %}
+        {% endif %}
+
 <!-- /no child pages  -->
 <!-- has child pages  -->
         {% if not child.is_leaf_node or child.ancestor %}
@@ -27,4 +33,9 @@
         {% endif %}
 <!-- /has child pages  -->
     {% endfor %}
+{% if request.user.is_authenticated %}
+        <li><a href="http://{{ request.get_host }}/logout" class="nav-link">Выход {{user.first_name}}</a></li>
+        {% else %}
+        <li><a href="http://{{ request.get_host }}/login" class="nav-link">Вход </a></li>
+        {% endif %}
 <!-- /end for child -->

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Group, Criteria, Indicator, University, University_Data
+from .models import Category, Group, Criteria, Indicator, University, University_Data, UserProfile
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -23,8 +23,7 @@ class UniversityAdmin(admin.ModelAdmin):
 
 
 class University_DataAdmin(admin.ModelAdmin):
-    list_display = ('Id', 'University_id', 'Criteria_id', 'Value', 'File', 'Date', 'Checked')
-
+    list_display = ('University_id', 'Criteria_id', 'Value', 'File', 'Date', 'Checked')
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Group, GroupAdmin)
@@ -32,5 +31,6 @@ admin.site.register(Criteria, CriteriaAdmin)
 admin.site.register(Indicator, IndicatorAdmin)
 admin.site.register(University, UniversityAdmin)
 admin.site.register(University_Data, University_DataAdmin)
+admin.site.register(UserProfile)
 
 # Register your models here.

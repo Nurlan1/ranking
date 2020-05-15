@@ -10,12 +10,16 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from django.urls import path
-from form.views import form_render_view, ranking_view
+from form.views import form_render_view, ranking_view, logout_view, login_view, ranking_by
 admin.autodiscover()
 
 urlpatterns = [
     path('en/anketa/', form_render_view),
     path('en/ranking/', ranking_view),
+    path('logout/', logout_view),
+path('en/login/', login_view),
+    path('', include("django.contrib.auth.urls")),
+    url(r'^en/(?P<param>[\w-]+)/$', ranking_by),
     url(r'^sitemap\.xml$', sitemap,
         {'sitemaps': {'cmspages': CMSSitemap}})
 ]

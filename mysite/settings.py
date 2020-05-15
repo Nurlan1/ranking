@@ -182,7 +182,8 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'djangocms_video',
     'mysite',
-    'form'
+    'form',
+'crispy_forms'
 ]
 
 LANGUAGES = (
@@ -327,3 +328,7 @@ CKEDITOR_SETTINGS = {
   },
  ]
 }
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = "/en/login/"
