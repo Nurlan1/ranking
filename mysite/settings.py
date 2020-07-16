@@ -183,7 +183,8 @@ INSTALLED_APPS = [
     'djangocms_video',
     'mysite',
     'form',
-'crispy_forms'
+'crispy_forms',
+    'django_extensions'
 ]
 
 LANGUAGES = (

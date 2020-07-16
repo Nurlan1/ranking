@@ -1,41 +1,226 @@
-{% load cms_tags menu_tags sekizai_tags %}
-<!doctype html>
-<html>
-    <head>
-        <title>{% block title %}This is my new project home page{% endblock title %}</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <style type="text/css">
-            .nav {
-                padding-left: 0;
-            }
-            .nav li {
-                display: inline;
-                list-style-type: none;
-                padding-right: 20px;
-            }
-            .container {
-                width: 940px;
-                margin: 0 auto
-            }
-            .content {
-                float: left;
-                width: 80%;
-            }
-            .sidebar {
-                float: left;
-                width: 20%;
-            }
-        </style>
-        {% render_block "css" %}
-    </head>
-    <body>
-        {% cms_toolbar %}
-        <div class="container">
-            <ul class="nav">
-                {% show_menu 0 100 100 100 %}
-            </ul>
-            {% block content %}{% endblock content %}
+{% extends "base.html" %}
+{% load cms_tags staticfiles  %}
+
+{%block content%}
+{% static "images" as baseUrl %}
+
+<div class="site-section bg-image2 overlay " id="contact-section"
+     style="background-image: url('{{baseUrl}}/hero_1.jpg'); ">
+    <div class="container" style="margin-top: 130px">
+        <div class="row mb-5">
+            <div class="col-12 text-center" style="">
+                <h2 class="section-title mb-3 text-white">Анкета для выпускников</h2>
+            </div>
         </div>
-        {% render_block "js" %}
-    </body>
-</html>
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-5">
+
+                <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">Основное</legend>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Ф.И.О. лица, заполнявшего
+                                    анкету</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value="{{request.user.first_name}}"
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Возраст</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="number" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Пол</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                           id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                           id="exampleRadios2" value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Second default radio
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Должность</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="position" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value="{{request.user.info.Position}}"
+                                ></div>
+                        </div>
+                        <div class="row form-group ">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Номер</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="phonenumber" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12 disabled" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value="{{request.user.info.PhoneNumber}}"
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Веб-сайт вуза</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="website" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="{{criteria.Max_value}}"
+                                       placeholder=""
+                                       value="{{ university.WebAddress }}"
+                                ></div>
+                        </div>
+                        <div class="row form-group" style="display: flex; justify-content: space-between">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="imgInp">Логотип</label>
+                            </div>
+                            <div class="col-lg-5 " style="">
+
+                                <input type="file" name="logo" class="custom-file-input "
+                                       id="imgInp"
+                                       value="">
+
+                                <label class="custom-file-label" for="imgInp" style=" overflow: hidden;  ">
+
+                                    {{ university.Logo }}} </label>
+                            </div>
+                            <div class="col-lg-2">
+                                <img id="blah" src="http://{{ request.get_host }}/media/{{ university.Logo }}"
+                                     alt="your image" style="width: 100px; height: 100px;"/>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-2">
+                        <legend class="w-auto">Данные</legend>
+                        {% for criteria in criteria %}
+                        {% if 'Ri' in criteria.Formula or criteria.VariableName != None %}
+                        {% if criteria.VariableName != '' %}
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">{{criteria.Name}}</label>
+                            </div>
+                            <div class="col-lg-4" style="display: flex;justify-content: space-between ">
+
+                                <input type="number" name="{{criteria.Id}}" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-4" min="0"
+                                       max=""
+                                       placeholder=" {{criteria.Indicator_id.Sign}}"
+                                       {% for university in university_data %}
+                                       {% if university.Criteria_id_id== criteria.Id %}
+                                       value="{{ university.Value }}"
+                                       {% endif %}
+                                       {% endfor %}
+                                >
+
+                                {% if criteria.File_Need %}
+                                <div class="custom-file col-lg-7">
+                                    <input type="file" name="f{{criteria.Id}}" class="custom-file-input "
+                                           id="customFile"
+
+                                           value=""
+
+                                    >
+
+                                    <label class="custom-file-label" for="customFile">
+                                        {% for university in university_data %}
+                                        {% if university.Criteria_id_id == criteria.Id %}
+                                        {{ university.File }}{% endif %}
+                                        {% endfor %} </label>
+
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            <div class="col-lg-8">
+                                {% for sub_crit in sub_criterias %}
+
+                                {% if sub_crit.Criteria_id_id == criteria.Id %}
+                                <div class="form-check">
+
+                                    <input class="form-check-input" type="checkbox"
+                                           id="defaultCheck1" name="s{{sub_crit.Id}}"
+                                           {% for sub in sub_crit.sub_data.all %}
+                                           {% if sub.Sub_criteria_id_id== sub_crit.Id %}
+                                           {% if sub.Value is True %}checked{% endif %}
+                                           {% endif %}
+                                           {% endfor %}
+                                           value=""
+                                    >
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        {{sub_crit.Name}}{{.all.count}}
+                                    </label>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </fieldset>
+
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12 ">
+                            <input type="submit" value="Сохранить" class=" btn btn-primary btn-lg float-right">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+</script>
+
+{% endblock content %}

@@ -18,7 +18,7 @@
                 <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa" enctype="multipart/form-data">
                     {% csrf_token %}
                     <!--              <h2 class="h4 text-black mb-5">Форма</h2>-->
-                    {% if page.number == 1 %}
+
                     <fieldset class="border p-3 ">
                         <legend class="w-auto">Основное</legend>
                         <div class="row form-group">
@@ -107,17 +107,12 @@
                         </div>
 </div>
                     </fieldset>
-                    {% endif %}
-                    {% for category in categories %}
+
                     <fieldset class="border p-2">
-                        <legend class="w-auto">{{category.Name}}</legend>
-                        {% for group in groups %}
-                        {% if category.Id is group.Category_id.Id %}
-                        <fieldset class="border p-2">
-                            <legend class="w-auto">{{group.Name}}</legend>
+                        <legend class="w-auto">Данные</legend>
                             {% for criteria in criteria %}
-                            {% if group.Id is criteria.Group_id.Id %}
-                            {% if 'Ri' in criteria.Formula or criteria.VariableName != None  %}
+                            {% if 'Ri' in criteria.Formula or criteria.VariableName != None %}
+                            {% if  criteria.VariableName != '' %}
                             <div class="row form-group">
                                 <div class="col-lg-8">
                                     <label class="text-black col-form-label" for="lname">{{criteria.Name}}</label>
@@ -154,7 +149,28 @@
                                     {% endif %}
 
                                 </div>
+<div class="col-lg-8">
+                                    {% for sub_crit in sub_criterias %}
 
+                                    {% if sub_crit.Criteria_id_id == criteria.Id %}
+                                    <div class="form-check">
+
+                                      <input class="form-check-input" type="checkbox"
+                                             id="defaultCheck1" name="s{{sub_crit.Id}}"
+                                             {% for sub in sub_crit.sub_data.all %}
+                                             {% if sub.Sub_criteria_id_id == sub_crit.Id %}
+                                             {% if sub.Value is True %}checked{% endif %}
+                                             {% endif %}
+                                             {% endfor %}
+                                             value=""
+                                             >
+                                      <label class="form-check-label" for="defaultCheck1">
+                                        {{sub_crit.Name}}{{.all.count}}
+                                      </label>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </div>
 
                             </div>
                             {% endif %}
@@ -162,55 +178,10 @@
                             {% endfor %}
 
 
-                        </fieldset>
-                        {% endif %}
-                        {% endfor %}
                     </fieldset>
-                    {% endfor %}
 
-                    <nav aria-label="...">
-                        {% if page.has_other_pages %}
-                        <ul class="pagination">
-                            {% if page.has_previous %}
-                            <li class="page-item ">
-                                <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            {% endif %}
 
-                            {% for pages in page.paginator.page_range %}
-                            {% if page.number == pages %}
-                            <li class="page-item active"><span class="page-link">{{ pages }}<span class="sr-only">(current)</span></span>
-                            </li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ pages }}">{{ pages }}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if page.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span></a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span></a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                    </nav>
+
                     <div class="row" style="margin-top: 5px">
                         <div class="col-md-12 ">
                             <input type="submit" value="Сохранить" class=" btn btn-primary btn-lg float-right">
@@ -238,4 +209,3 @@
 </script>
 
 {% endblock content %}
-

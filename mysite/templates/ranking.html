@@ -2,7 +2,20 @@
 {% load cms_tags staticfiles  %}
 
 {%block content%}
+<p>{{ranking}}</p><br>
 <div style="margin: 0 auto; display: flex; justify-content: space-around; margin-bottom: 15px;">
+    <div class="dropdown">
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+            {{y}}-Год
+        </button>
+        <div class="dropdown-menu">
+            {% for yea in years %}
+            {% if yea.Year %}
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/ranking/?q=y{{yea.Id}}">{{yea.Year}}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
     <div class="dropdown">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             По уровню
@@ -10,10 +23,9 @@
         <div class="dropdown-menu">
             {% for category in categories %}
             {% if category.Max_value %}
-            <a class="dropdown-item" href="http://{{ request.get_host }}/en/l{{category.Id}}">{{category.Name}}</a>
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/ranking/?q=y{{year}}&c=l{{category.Id}}">{{category.Name}}</a>
             {% endif %}
             {% endfor %}
-
         </div>
     </div>
     <div class="dropdown">
@@ -23,7 +35,7 @@
         <div class="dropdown-menu" style="max-height:350px; max-width: 450px; overflow:auto; margin-left: -50%; ">
             {% for criteria in criterias %}
             {% if criteria.Formula %}
-            <a class="dropdown-item" href="http://{{ request.get_host }}/en/c{{criteria.Id}}">{{criteria.Name}}</a>
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/ranking/?q=y{{year}}&c=c{{criteria.Id}}">{{criteria.Name}}</a>
             {% endif %}
             {% endfor %}
         </div>
@@ -35,27 +47,32 @@
         <div class="dropdown-menu" style="max-height:350px; max-width: 300px; overflow:auto; margin-left: -50%;">
             {% for group in groups %}
             {% if group.Max_value %}
-            <a class="dropdown-item" href="http://{{ request.get_host }}/en/g{{group.Id}}">{{ group.Name}}</a>
+            <a class="dropdown-item" href="http://{{ request.get_host }}/en/ranking/?q=y{{year}}&c=g{{group.Id}}">{{ group.Name}}</a>
             {% endif %}
             {% endfor %}
         </div>
     </div>
 
 </div>
-<table class="table">
+<table class="table table-sm">
     <thead class="thead-dark">
     <tr>
         <th scope="col">#</th>
+        <th scope="col">Логотип</th>
         <th scope="col">Имя</th>
+        <th scope="col">Сайт</th>
         <th scope="col">Балл</th>
-        <th scope="col">Handle</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     {% for university in uarray %}
     <tr>
-        <th scope="row"></th>
+        <th scope="row">{{ forloop.counter }}</th>
+
+        <td><img id="blah" src="http://{{ request.get_host }}/media/{{ university.Logo }}" alt="your image" style="width: 35px; height: 35x;" /></td>
         <td>{{ university.Name}}</td>
+        <td><a href="http://www.{{university.Webaddress}}">{{university.Webaddress}}</a></td>
         <td>{{university.Value}}</td>
         <td>
             <div class="progress">

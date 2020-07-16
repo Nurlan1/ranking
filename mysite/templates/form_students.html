@@ -1,0 +1,501 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles  %}
+
+{%block content%}
+{% static "images" as baseUrl %}
+
+<div class="site-section bg-image2 overlay " id="contact-section"
+     style="background-image: url('{{baseUrl}}/hero_1.jpg'); ">
+    <div class="container" style="margin-top: 130px">
+        <div class="row mb-5">
+            <div class="col-12 text-center" style="">
+                <h2 class="section-title mb-3 text-white">Анкета для выпускников</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-5">
+
+                <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">Основное</legend>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Ф.И.О. лица, заполнявшего
+                                    анкету</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value="{{request.user.first_name}}"
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Возраст</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="number" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Пол</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: flex-start ">
+                                <div style="justify-content: space-between">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                               id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Мужской
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                               id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Женский
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="datepicker">Дата окончания учебного
+                                    заведения</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input id="datepicker" width="276"/>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Наименование специальности,
+                                    направления подготовки, указанному
+
+                                    в дипломе</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Наименование места работы
+
+                                    в дипломе</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Должность</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Месячная зарплата</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                        <option selected>до 5 тысяч сомов</option>
+                                        <option value="1">5-10 тысяч сомов</option>
+                                        <option value="2">10-15 тысяч сомов</option>
+                                        <option value="3">15-20 тысяч сомов</option>
+                                        <option value="3">20-25 тысяч сомов</option>
+                                        <option value="3">более 25 тысяч сомов</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">Иные каналы занятости*:</legend>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Собираюсь продолжить
+                                    обучение</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder="(наименование, адрес учебного заведения)"
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">уровень профессионального
+                                    образования</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                        <option selected>послевузовское образование (аспирантура, ординатура и др.)
+                                        </option>
+                                        <option value="1">высшее профессиональное (университет и др.)</option>
+                                        <option value="2">среднее профессиональное (колледж и др.)</option>
+                                        <option value="3">начальное профессиональное (ПЛ др.)</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">по специальности</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder="(наименование специальности)"
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">сроки обучения</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname"> Буду призван в ряды Вооруженных
+                                    Сил КР на срок: </label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Планирую уйти (или нахожусь) в
+                                    отпуске по уходу за ребенком на срок: </label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="filler" step="1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max="100"
+                                       placeholder=""
+                                       value=""
+                                ></div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">По истечению времени, как бы Вы оценили следующие аспекты учебного
+                            процесса?
+                        </legend>
+                        <table class="table table-sm">
+<tbody>
+<tr>
+<td><div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Знание преподавателей своих
+                                    предметов</label>
+                            </div></td>
+<td>
+   <div class="rating" style="width: 25px height: 10px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+</td>
+</tr>
+<tr>   <td>
+    <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Умение преподавателей понятно объяснять свои предметы</label>
+                            </div>
+</td>
+<td>
+   <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+</td></tr>
+</tbody>
+                        </table>
+                        <div class="row form-group">
+
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+
+                            </div>
+                        </div>
+                        <div class="row form-group">
+
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Знание мастеров своего предмета</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Умение мастеров понятно объяснять свои предметы</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Работу кураторa </label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <fieldset class="border p-4 ">
+                        <legend class="w-auto"><h5>Как бы Вы оценили следующие элементы, связанные с подготовкой к трудоустройству?</h5>
+                        </legend>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Подготовка к трудовой деятельности</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Соответствие учебного процесса практическим требованиям на рабочем месте</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Практический опыт преподавательского состава</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Взаимосвязь между теорией и практикой</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Насколько учебная программа ориентирована на практику</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-8">
+                                <label class="text-black col-form-label" for="lname">Помощь в поиске работы</label>
+                            </div>
+                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+
+                                <div class="rating" style="width: 25px height: 15px">
+
+                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
+                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
+                                                                 >
+                                    <label
+                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
+                                        for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12 ">
+                            <input type="submit" value="Сохранить" class=" btn btn-primary btn-lg float-right">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+</script>
+
+{% endblock content %}
