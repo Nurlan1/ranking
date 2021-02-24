@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles  %}
+
+{%block content%}
+{% static "images" as baseUrl %}
+
+<div class="site-section bg-image2 overlay " id="contact-section"
+     style="background-image: url('{{baseUrl}}/hero_1.jpg'); ">
+    <div class="container" style="margin-top: 130px">
+        <div class="row mb-5">
+            <div class="col-12 text-center" style="">
+                <h2 class="section-title mb-3 text-white">Анкета по цифровым навыкам</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-5">
+
+                <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"></legend>
+
+
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Университет</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                            name="university_id">
+                                        {% for university in universities %}
+                                         <option value="{{university.Id}}" > {{university.Name}}
+                                        </option>
+                                        {% endfor %}
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">1. Владение цифровыми навыками
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Знаете ли Вы устройство ПК и умеите ли пользоваться принтером, сканером?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="printer" value="2" id="2"><label title="Да" for="2">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="printer" value="1" id="1"><label title="Нет" for="1">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Пользуетесь ли Вы продуктами MS Office? Если да то какими чаще всего?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="office" value="2" id="2a"><label title="Да" for="2a">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="office" value="1" id="1a"><label title="Нет" for="1a">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Пользуетесь ли Вы меседжерами и социальными сетями? Если да то какими? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="sm" value="2" id="2b"><label title="Да" for="2b">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="sm" value="1" id="1b"><label title="Нет" for="1b">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Используете ли Вы Интернет как источник новостной информации? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="internet" value="2" id="2bb"><label title="Да" for="2bb">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="internet" value="1" id="1bb"><label title="Нет" for="1bb">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Доверяете ли Вы информации в Интернет? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="trust" value="2" id="2c"><label title="Да" for="2c">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="trust" value="1" id="1c"><label title="Нет" for="1c">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">2. Использование цифровых сервисов
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Пользуетесь ли вы электронным порталом государственных услуг?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="portal" value="2" id="2d"><label title="Да" for="2d">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="portal" value="1" id="1d"><label title="Нет" for="1d">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Пользуетесь ли вы банковской картой или платежными сервисами при оплате услуг? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="card" value="2" id="2e"><label title="Да" for="2e">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="card" value="1" id="1e"><label title="Нет" for="1e">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Покупаете ли вы товары и услуги через Интернет?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="purchase" value="2" id="2f"><label title="Да" for="2f">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="purchase" value="1" id="1f"><label title="Нет" for="1f">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Обучаетесь ли Вы он-лайн через Интернет? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="online" value="2" id="2g"><label title="Да" for="2g">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="online" value="1" id="1g"><label title="Нет" for="1g">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Используете ли Вы интернет для продвижения своего бизнеса или своей организации? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="promotion" value="2" id="2h"><label title="Да" for="2h">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="promotion" value="1" id="1h"><label title="Нет" for="1h">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">3. Знание основ информационной безопасности и программирования
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Знаете ли Вы как избавиться от следов своего существования в интернете?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="rid" value="2" id="2i"><label title="Да" for="2i">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="rid" value="1" id="1i"><label title="Нет" for="1i">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Знаете ли Вы как обспечить сохранность личной информации? </label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="encapsulation" value="2" id="2j"><label title="Да" for="2j">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="encapsulation" value="1" id="1j"><label title="Нет" for="1j">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Знакомы ли вы с языком гипертекстовой разметки HTML?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="language" value="2" id="2k"><label title="Да" for="2k">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="language" value="1" id="1k"><label title="Нет" for="1k">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Хотите ли Вы изучать языки программирования?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="program_lang" value="2" id="2l"><label title="Да" for="2l">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="program_lang" value="1" id="1l"><label title="Нет" for="1l">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Знаете ли Вы о возможностях телемедицины?</label>
+                                </td>
+                                <td>
+                                    <div style="display: flex;justify-content: space-between; width:100px;" >
+
+                                        <div class="ratinggg" style="width: 25px height: 10px">
+                                            <input type="radio" name="telemedicine" value="2" id="2m"><label title="Да" for="2m">☐</label>
+                                        </div>
+                                        <div class="ratingggg" style="width: 25px height: 10px">
+
+                                            <input type="radio" name="telemedicine" value="1" id="1m"><label title="Нет" for="1m">☐</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12 ">
+                            <input type="submit" value="Сохранить" class=" btn btn-primary btn-lg float-right">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% if message1 is not None %}
+<script>
+
+    alert('{{ message1 }}');
+</script>
+{% endif %}
+{% endblock content %}

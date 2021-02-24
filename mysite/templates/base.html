@@ -16,15 +16,10 @@
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-
     <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -56,20 +51,19 @@
     </div>
 </div>
 
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" style=" width: 100%;">
+    <header class="site-navbar py-3 js-sticky-header site-navbar-target" role="banner" style=" width: 100%;">
 
-        <div class="container" style="margin-top: fill">
+        <div class="container" style="margin-bottom:-20px">
             <div class="row align-items-center">
 
-                <div class="col-6 col-md-3 col-xl-4  d-block">
-                    <a href="/" class="text-black h2 mb-0" style="width:20px"><img src="{% static 'images/logo.png' %}"
-                                                                                   class="mb-0 site-logo"> </img></a>
+                <div class="col-6 col-md-4 col-xl-2  d-block">
+                    <a href="/" class="text-black h2 mb-0"><img src="{% static 'images/Картинки/logo.png' %}"class="mb-0 site-logo" style="margin-left: -50px" > </img></a>
                 </div>
 
-                <div class="col-12 col-md-9 col-xl-8 main-menu ">
-                    <nav class="site-navigation position-relative text-right" role="navigation">
+                <div class="col-6 col-md-8 col-xl-10 main-menu ">
+                    <nav style="margin-right: -50px" class="site-navigation position-relative text-right" role="navigation">
 
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0 ">
+                        <ul  class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0 ">
                             {% show_menu 0 100 100 100 "menu/custom-menu.html" %}
 
                         </ul>
@@ -78,13 +72,13 @@
 
 
                 <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0"><a href="#"
-                                                                                class="site-menu-toggle js-menu-toggle text-black float-right"><span
-                        class="icon-menu h3"></span></a></div>
+                 class="site-menu-toggle js-menu-toggle text-black float-right"><span
+                 class="icon-menu h3"></span></a></div>
             </div>
         </div>
 
 
-
+        </div>
     </header>
 
 <div style="padding-top: 150px">
@@ -199,15 +193,19 @@ $(function(){
 
 });
 </script>
+
 <script>
 
         $('#datepicker').datepicker({
         locale: 'ru-ru',
-        format: 'dd mmm yyyy',
+        format: 'dd.mm.yyyy',
         uiLibrary: 'bootstrap4'
 
     });
-    </script>
+
+    </script><script>
+    $("#datepicker").mask("99.99.9999", {placeholder: "дд.мм.гггг" });
+</script>
 {% render_block "js" %}
 </body>
 </html>

@@ -217,6 +217,7 @@ CMS_TEMPLATES = (
     ('Form.html', 'Анкета'),
     ('ranking.html', 'Рейтинг'),
     ('sidebar_left.html', 'Sidebar Left'),
+    ('contact.html', 'Контакты'),
     ('sidebar_right.html', 'Sidebar Right')
 )
 

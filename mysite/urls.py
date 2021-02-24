@@ -10,12 +10,14 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from django.urls import path
-from form.views import form_render_view, ranking_view, logout_view, login_view, ranking_by, form_students
+from form.views import form_render_view, ranking_view, logout_view, login_view, ranking_by, form_students, form_employers, form_digital_knowledge
 admin.autodiscover()
 
 urlpatterns = [
     path('en/anketa/', form_render_view),
     path('en/stud/', form_students),
+    path('en/emp/', form_employers),
+path('en/dig/', form_digital_knowledge),
 
     # path('en/ranking/', ranking_view),
     path('logout/', logout_view),

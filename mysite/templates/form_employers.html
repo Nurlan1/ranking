@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles  %}
+
+{%block content%}
+{% static "images" as baseUrl %}
+
+<div class="site-section bg-image2 overlay " id="contact-section"
+     style="background-image: url('{{baseUrl}}/hero_1.jpg'); ">
+    <div class="container" style="margin-top: 130px">
+        <div class="row mb-5">
+            <div class="col-12 text-center" style="">
+                <h2 class="section-title mb-3 text-white">Анкета для работодателей</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-5">
+
+                <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">Основное</legend>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label class="text-black col-form-label" for="lname">Название организации:</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+                                <input type="text" name="org_name" step="0.1" id="lname"
+                                       class="form-control rounded-0 col-lg-12" min="0"
+                                       max=""
+                                       placeholder=""
+                                       value="{{request.user.first_name}}"
+                                ></div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Выберите ВУЗ:</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                            name="university_id">
+                                        {% for university in universities %}
+                                         <option value="{{university.Id}}" > {{university.Name}}
+                                        </option>
+                                        {% endfor %}
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect3">Специальность</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+                                <div class="col-lg-8" style="float: left ">
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3"
+                                            name="major">
+                                        {% for major in majors %}
+                                         <option value="{{major.Id}}" > {{major.Name}}
+                                        </option>
+                                        {% endfor %}
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect1">Должность респондента:</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" name="position" id="inlineFormCustomSelect1">
+                                        <option value="0">Руководитель учреждения</option>
+                                        <option value="1">Руководитель подразделения</option>
+                                        <option value="2">Рядовой сотрудник</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Количество сотрудников:</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" name="e_number" id="inlineFormCustomSelect">
+                                        <option value="0">0-10</option>
+                                        <option value="1">10-50</option>
+                                        <option value="2">50-100</option>
+                                        <option value="3">100-1000</option>
+                                        <option value="3">Более 1000</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">Навык/компетенция
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">1.  Способность к анализу и синтезу </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="synthesis" value="4" id="4"><label title="сильный"for="4">☆</label>
+                                        <input type="radio" name="synthesis" value="3" id="3"><label title="значительный" for="3">☆</label>
+                                        <input type="radio" name="synthesis" value="2" id="2"><label title="слабый" for="2">☆</label>
+                                        <input type="radio" name="synthesis" value="1" id="1"><label title="никакой" for="1">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">2.  Способность применять знания на практике </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="using" value="4" id="4a"><label title="сильный"for="4a">☆</label>
+                                        <input type="radio" name="using" value="3" id="3a"><label title="значительный" for="3a">☆</label>
+                                        <input type="radio" name="using" value="2" id="2a"><label title="слабый" for="2a">☆</label>
+                                        <input type="radio" name="using" value="1" id="1a"><label title="никакой" for="1a">☆</label>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">3.  Планирование и управление  временем  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="time_management" value="4" id="4b"><label title="сильный"for="4b">☆</label>
+                                        <input type="radio" name="time_management" value="3" id="3b"><label title="значительный" for="3b">☆</label>
+                                        <input type="radio" name="time_management" value="2" id="2b"><label title="слабый" for="2b">☆</label>
+                                        <input type="radio" name="time_management" value="1" id="1b"><label title="никакой" for="1b">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">4.  Базовые знания в области самообучения</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="base_knowledge" value="4" id="4c"><label title="сильный"for="4c">☆</label>
+                                        <input type="radio" name="base_knowledge" value="3" id="3c"><label title="значительный" for="3c">☆</label>
+                                        <input type="radio" name="base_knowledge" value="2" id="2c"><label title="слабый" for="2c">☆</label>
+                                        <input type="radio" name="base_knowledge" value="1" id="1c"><label title="никакой" for="1c">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">5.  Тщательная подготовка по основам профессии  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="preparing" value="4" id="4d"><label title="сильный"for="4d">☆</label>
+                                        <input type="radio" name="preparing" value="3" id="3d"><label title="значительный" for="3d">☆</label>
+                                        <input type="radio" name="preparing" value="2" id="2d"><label title="слабый" for="2d">☆</label>
+                                        <input type="radio" name="preparing" value="1" id="1d"><label title="никакой" for="1d">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">6.  Письменная и  устная коммуникация  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="communication" value="4" id="4e"><label title="сильный"for="4e">☆</label>
+                                        <input type="radio" name="communication" value="3" id="3e"><label title="значительный" for="3e">☆</label>
+                                        <input type="radio" name="communication" value="2" id="2e"><label title="слабый" for="2e">☆</label>
+                                        <input type="radio" name="communication" value="1" id="1e"><label title="никакой" for="1e">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">7.  Знание второго языка  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="lang_knowledge" value="4" id="4f"><label title="сильный"for="4f">☆</label>
+                                        <input type="radio" name="lang_knowledge" value="3" id="3f"><label title="значительный" for="3f">☆</label>
+                                        <input type="radio" name="lang_knowledge" value="2" id="2f"><label title="слабый" for="2f">☆</label>
+                                        <input type="radio" name="lang_knowledge" value="1" id="1f"><label title="никакой" for="1f">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">8.  Элементарные навыки работы с компьютером </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="comp_work" value="4" id="4g"><label title="сильный"for="4g">☆</label>
+                                        <input type="radio" name="comp_work" value="3" id="3g"><label title="значительный" for="3g">☆</label>
+                                        <input type="radio" name="comp_work" value="2" id="2g"><label title="слабый" for="2g">☆</label>
+                                        <input type="radio" name="comp_work" value="1" id="1g"><label title="никакой" for="1g">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">9.  Исследовательские навыки   </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="exploring" value="4" id="4h"><label title="сильный"for="4h">☆</label>
+                                        <input type="radio" name="exploring" value="3" id="3h"><label title="значительный" for="3h">☆</label>
+                                        <input type="radio" name="exploring" value="2" id="2h"><label title="слабый" for="2h">☆</label>
+                                        <input type="radio" name="exploring" value="1" id="1h"><label title="никакой" for="1h">☆</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">10.  Способность учиться</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="studying" value="4" id="4i"><label title="сильный"for="4i">☆</label>
+                                        <input type="radio" name="studying" value="3" id="3i"><label title="значительный" for="3i">☆</label>
+                                        <input type="radio" name="studying" value="2" id="2i"><label title="слабый" for="2i">☆</label>
+                                        <input type="radio" name="studying" value="1" id="1i"><label title="никакой" for="1i">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">11.  Навыки работы с информацией (способность находить и анализировать информацию из различных источников)  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="inf_work" value="4" id="4j"><label title="сильный"for="4j">☆</label>
+                                        <input type="radio" name="inf_work" value="3" id="3j"><label title="значительный" for="3j">☆</label>
+                                        <input type="radio" name="inf_work" value="2" id="2j"><label title="слабый" for="2j">☆</label>
+                                        <input type="radio" name="inf_work" value="1" id="1j"><label title="никакой" for="1j">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">12.  Способность к критике и самокритике   </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="criticism" value="4" id="4k"><label title="сильный"for="4k">☆</label>
+                                        <input type="radio" name="criticism" value="3" id="3k"><label title="значительный" for="3k">☆</label>
+                                        <input type="radio" name="criticism" value="2" id="2k"><label title="слабый" for="2k">☆</label>
+                                        <input type="radio" name="criticism" value="1" id="1k"><label title="никакой" for="1k">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">13.  Способность адаптироваться к новым ситуациям  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="adapt" value="4" id="4l"><label title="сильный"for="4l">☆</label>
+                                        <input type="radio" name="adapt" value="3" id="3l"><label title="значительный" for="3l">☆</label>
+                                        <input type="radio" name="adapt" value="2" id="2l"><label title="слабый" for="2l">☆</label>
+                                        <input type="radio" name="adapt" value="1" id="1l"><label title="никакой" for="1l">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">14.  Способность выдвигать новые идеи (креативность)  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="new_ideas" value="4" id="4m"><label title="сильный"for="4m">☆</label>
+                                        <input type="radio" name="new_ideas" value="3" id="3m"><label title="значительный" for="3m">☆</label>
+                                        <input type="radio" name="new_ideas" value="2" id="2m"><label title="слабый" for="2m">☆</label>
+                                        <input type="radio" name="new_ideas" value="1" id="1m"><label title="никакой" for="1m">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">15.  Решение проблем  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="solving" value="4" id="4n"><label title="сильный"for="4n">☆</label>
+                                        <input type="radio" name="solving" value="3" id="3n"><label title="значительный" for="3n">☆</label>
+                                        <input type="radio" name="solving" value="2" id="2n"><label title="слабый" for="2n">☆</label>
+                                        <input type="radio" name="solving" value="1" id="1n"><label title="никакой" for="1n">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">16.  Принятие решений  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+                                        <input type="radio" name="decision" value="4" id="4o"><label title="сильный"for="4o">☆</label>
+                                        <input type="radio" name="decision" value="3" id="3o"><label title="значительный" for="3o">☆</label>
+                                        <input type="radio" name="decision" value="2" id="2o"><label title="слабый" for="2o">☆</label>
+                                        <input type="radio" name="decision" value="1" id="1o"><label title="никакой" for="1o">☆</label>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">17.  Работа в команде  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="team_work" value="4" id="4p"><label title="сильный"for="4p">☆</label>
+                                        <input type="radio" name="team_work" value="3" id="3p"><label title="значительный" for="3p">☆</label>
+                                        <input type="radio" name="team_work" value="2" id="2p"><label title="слабый" for="2p">☆</label>
+                                        <input type="radio" name="team_work" value="1" id="1p"><label title="никакой" for="1p">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">18.  Навыки межличностных отношений </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="personal" value="4" id="4q"><label title="сильный"for="4q">☆</label>
+                                        <input type="radio" name="personal" value="3" id="3q"><label title="значительный" for="3q">☆</label>
+                                        <input type="radio" name="personal" value="2" id="2q"><label title="слабый" for="2q">☆</label>
+                                        <input type="radio" name="personal" value="1" id="1q"><label title="никакой" for="1q">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">19.  Лидерство  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+                                        <input type="radio" name="leadership" value="4" id="4r"><label title="сильный"for="4r">☆</label>
+                                        <input type="radio" name="leadership" value="3" id="3r"><label title="значительный" for="3r">☆</label>
+                                        <input type="radio" name="leadership" value="2" id="2r"><label title="слабый" for="2r">☆</label>
+                                        <input type="radio" name="leadership" value="1" id="1r"><label title="никакой" for="1r">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">20.  Способность работать в междисциплинарной команде</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+
+                                        <input type="radio" name="team_disc_work" value="4" id="4s"><label title="сильный"for="4s">☆</label>
+                                        <input type="radio" name="team_disc_work" value="3" id="3s"><label title="значительный" for="3s">☆</label>
+                                        <input type="radio" name="team_disc_work" value="2" id="2s"><label title="слабый" for="2s">☆</label>
+                                        <input type="radio" name="team_disc_work" value="1" id="1s"><label title="никакой" for="1s">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">21.  Способность общаться с неспециалистами (в данной области)  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="nospec_work" value="4" id="4t"><label title="сильный"for="4t">☆</label>
+                                        <input type="radio" name="nospec_work" value="3" id="3t"><label title="значительный" for="3t">☆</label>
+                                        <input type="radio" name="nospec_work" value="2" id="2t"><label title="слабый" for="2t">☆</label>
+                                        <input type="radio" name="nospec_work" value="1" id="1t"><label title="никакой" for="1t">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">22.  Способность работать в международной среде </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="internat_work" value="4" id="4u"><label title="сильный"for="4u">☆</label>
+                                        <input type="radio" name="internat_work" value="3" id="3u"><label title="значительный" for="3u">☆</label>
+                                        <input type="radio" name="internat_work" value="2" id="2u"><label title="слабый" for="2u">☆</label>
+                                        <input type="radio" name="internat_work" value="1" id="1u"><label title="никакой" for="1u">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">23.  Способность работать самостоятельно  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="indep_work" value="4" id="4v"><label title="сильный"for="4v">☆</label>
+                                        <input type="radio" name="indep_work" value="3" id="3v"><label title="значительный" for="3v">☆</label>
+                                        <input type="radio" name="indep_work" value="2" id="2v"><label title="слабый" for="2v">☆</label>
+                                        <input type="radio" name="indep_work" value="1" id="1v"><label title="никакой" for="1v">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">24.  Разработка проектов и управление проектами  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="development" value="4" id="4w"><label title="сильный"for="4w">☆</label>
+                                        <input type="radio" name="development" value="3" id="3w"><label title="значительный" for="3w">☆</label>
+                                        <input type="radio" name="development" value="2" id="2w"><label title="слабый" for="2w">☆</label>
+                                        <input type="radio" name="development" value="1" id="1w"><label title="никакой" for="1w">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">25.  Инициативность и  предпринимательский дух  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="initiate" value="4" id="4x"><label title="сильный"for="4x">☆</label>
+                                        <input type="radio" name="initiate" value="3" id="3x"><label title="значительный" for="3x">☆</label>
+                                        <input type="radio" name="initiate" value="2" id="2x"><label title="слабый" for="2x">☆</label>
+                                        <input type="radio" name="initiate" value="1" id="1x"><label title="никакой" for="1x">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">26.  Приверженность этическим ценностям </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="ethics" value="4" id="4y"><label title="сильный"for="4y">☆</label>
+                                        <input type="radio" name="ethics" value="3" id="3y"><label title="значительный" for="3y">☆</label>
+                                        <input type="radio" name="ethics" value="2" id="2y"><label title="слабый" for="2y">☆</label>
+                                        <input type="radio" name="ethics" value="1" id="1y"><label title="никакой" for="1y">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">27.  Забота о качестве  </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="caring" value="4" id="4z"><label title="сильный"for="4z">☆</label>
+                                        <input type="radio" name="caring" value="3" id="3z"><label title="значительный" for="3z">☆</label>
+                                        <input type="radio" name="caring" value="2" id="2z"><label title="слабый" for="2z">☆</label>
+                                        <input type="radio" name="caring" value="1" id="1z"><label title="никакой" for="1z">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">28.  Стремление к  успеху</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+                                    <input type="radio" name="ambition" value="4" id="4ab"><label title="сильный"for="4ab">☆</label>
+                                    <input type="radio" name="ambition" value="3" id="3ab"><label title="значительный" for="3ab">☆</label>
+                                    <input type="radio" name="ambition" value="2" id="2ab"><label title="слабый" for="2ab">☆</label>
+                                    <input type="radio" name="ambition" value="1" id="1ab"><label title="никакой" for="1ab">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+
+
+
+
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12 ">
+                            <input type="submit" value="Сохранить" class=" btn btn-primary btn-lg float-right">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% if message1 is not None %}
+<script>
+
+    alert('{{ message1 }}');
+</script>
+{% endif %}
+{% endblock content %}

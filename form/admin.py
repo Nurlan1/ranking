@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Group, Criteria, Indicator, University, University_Data, UserProfile, Year
+from .models import Category, Group, Criteria, Indicator, University, University_Data, UserProfile, Year, Major
 from django.forms import TextInput, Textarea
 from django.db import models
 
@@ -67,6 +67,10 @@ class University_DataAdmin(admin.ModelAdmin):
     list_filter = ['Year_id']
 
 
+class MajorAdmin(admin.ModelAdmin):
+    list_display = ('Id', 'Name')
+
+
 admin.site.register(Year, YearAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Group, GroupAdmin)
@@ -75,5 +79,7 @@ admin.site.register(Indicator, IndicatorAdmin)
 admin.site.register(University, UniversityAdmin)
 admin.site.register(University_Data, University_DataAdmin)
 admin.site.register(UserProfile)
+admin.site.register(Major, MajorAdmin)
+
 
 # Register your models here.

@@ -4,7 +4,7 @@
 <!-- no child pages  -->
         {% if child.is_leaf_node %}
             {% if child.get_menu_title != 'Анкета'  %}
-            <li><a href="{{ child.get_absolute_url }}" class="nav-link{% if request.path == child.get_absolute_url %} active{% endif %} ">{{child.get_menu_title }}  </a>  </li>
+            <li><a style="padding-right: 0px" href="{{ child.get_absolute_url }}" class="nav-link{% if request.path == child.get_absolute_url %} active{% endif %} ">{{child.get_menu_title }}  </a>  </li>
             {% elif  user.info.University_id  %}
             <li><a href="{{ child.get_absolute_url }}" class="nav-link{% if request.path == child.get_absolute_url %} active{% endif %} ">{{child.get_menu_title }}  </a>  </li>
 
@@ -34,8 +34,8 @@
 <!-- /has child pages  -->
     {% endfor %}
 {% if request.user.is_authenticated %}
-        <li><a href="http://{{ request.get_host }}/logout" class="nav-link">Выход {{user.first_name}}</a></li>
+        <li><a href="http://{{ request.META.HTTP_HOST }}/logout" class="nav-link">Выход {{user.first_name}}</a></li>
         {% else %}
-        <li><a href="http://{{ request.get_host }}/login" class="nav-link">Вход </a></li>
+        <li><a href="http://{{ request.META.HTTP_HOST }}/login" class="nav-link">Вход </a></li>
         {% endif %}
 <!-- /end for child -->

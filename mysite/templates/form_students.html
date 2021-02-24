@@ -18,8 +18,6 @@
                 <form action="#" method="POST" class="p-5 bg-white" style="border-radius: 10px" id="anketa"
                       enctype="multipart/form-data">
                     {% csrf_token %}
-
-
                     <fieldset class="border p-3 ">
                         <legend class="w-auto">Основное</legend>
 
@@ -30,7 +28,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="0.1" id="lname"
+                                <input type="text" name="fio" step="0.1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max=""
                                        placeholder=""
@@ -42,12 +40,12 @@
                                 <label class="text-black col-form-label" for="lname">Возраст</label>
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
-
-                                <input type="number" name="filler" step="1" id="lname"
+                                <input type="number" name="age" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
                                        value=""
+                                       min="15"
                                 ></div>
                         </div>
                         <div class="row form-group">
@@ -57,19 +55,40 @@
                             <div class="col-lg-8" style="display: flex;justify-content: flex-start ">
                                 <div style="justify-content: space-between">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                               id="exampleRadios1" value="option1" checked>
+                                        <input class="form-check-input" type="radio" name="gender"
+                                               id="exampleRadios1" value="Male" checked>
                                         <label class="form-check-label" for="exampleRadios1">
                                             Мужской
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                               id="exampleRadios2" value="option2">
+                                        <input class="form-check-input" type="radio" name="gender"
+                                               id="exampleRadios2" value="Female">
                                         <label class="form-check-label" for="exampleRadios2">
                                             Женский
                                         </label>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Университет</label>
+                            </div>
+                            <div class="col-lg-8" style="display: flex;justify-content: space-between ">
+
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                            name="university_id">
+                                        {% for university in universities %}
+                                         <option value="{{university.Id}}" > {{university.Name}}
+                                        </option>
+                                        {% endfor %}
+
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -79,36 +98,40 @@
                                     заведения</label>
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
-
-                                <input id="datepicker" width="276"/>
+                                <input  value="" name="graddate" id="datepicker" width="276"/>
                             </div>
                         </div>
 
-                        <div class="row form-group">
-                            <div class="col-lg-4">
-                                <label class="text-black col-form-label" for="lname">Наименование специальности,
-                                    направления подготовки, указанному
 
-                                    в дипломе</label>
+                        <div class="row form-group">
+                            <div class="col-lg-4" style="margin-top:5px">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect3">Специальность</label>
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
-                                       class="form-control rounded-0 col-lg-12" min="0"
-                                       max="100"
-                                       placeholder=""
-                                       value=""
-                                ></div>
+
+                                <div class="col-lg-8" style="float: left ">
+
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3"
+                                            name="major">
+                                        {% for major in majors %}
+                                         <option value="{{major.Id}}" > {{major.Name}}
+                                        </option>
+                                        {% endfor %}
+
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-4">
                                 <label class="text-black col-form-label" for="lname">Наименование места работы
-
-                                    в дипломе</label>
+                                </label>
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="job" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
@@ -121,7 +144,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="position" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
@@ -137,8 +160,8 @@
 
                                 <div class="col-lg-8" style="float: left ">
 
-                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected>до 5 тысяч сомов</option>
+                                    <select class="custom-select mr-sm-2" name="salary" id="inlineFormCustomSelect">
+                                        <option value="0">до 5 тысяч сомов</option>
                                         <option value="1">5-10 тысяч сомов</option>
                                         <option value="2">10-15 тысяч сомов</option>
                                         <option value="3">15-20 тысяч сомов</option>
@@ -158,7 +181,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="name_university" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder="(наименование, адрес учебного заведения)"
@@ -175,8 +198,9 @@
 
                                 <div class="col-lg-8" style="float: left ">
 
-                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected>послевузовское образование (аспирантура, ординатура и др.)
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                            name="level_of_education">
+                                        <option value="0">послевузовское образование (аспирантура, ординатура и др.)
                                         </option>
                                         <option value="1">высшее профессиональное (университет и др.)</option>
                                         <option value="2">среднее профессиональное (колледж и др.)</option>
@@ -192,7 +216,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="major1" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder="(наименование специальности)"
@@ -205,7 +229,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="study_terms" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
@@ -219,7 +243,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="army_terms" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
@@ -233,7 +257,7 @@
                             </div>
                             <div class="col-lg-8" style="display: flex;justify-content: space-between ">
 
-                                <input type="text" name="filler" step="1" id="lname"
+                                <input type="text" name="maternity_leave_term" step="1" id="lname"
                                        class="form-control rounded-0 col-lg-12" min="0"
                                        max="100"
                                        placeholder=""
@@ -246,239 +270,1207 @@
                             процесса?
                         </legend>
                         <table class="table table-sm">
-<tbody>
-<tr>
-<td><div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Знание преподавателей своих
-                                    предметов</label>
-                            </div></td>
-<td>
-   <div class="rating" style="width: 25px height: 10px">
+                            <tbody>
+                            <tr>
+                                <td>
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-</td>
-</tr>
-<tr>   <td>
-    <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Умение преподавателей понятно объяснять свои предметы</label>
-                            </div>
-</td>
-<td>
-   <div class="rating" style="width: 25px height: 15px">
+                                    <label class="text-black col-form-label" for="lname">Знание преподавателей своих
+                                        предметов</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 10px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-</td></tr>
-</tbody>
+                                        <input type="radio" name="teachers_knowledge" value="5" id="5"> <label
+                                            title="Очень хорошо"
+                                            for="5">☆</label>
+                                        <input type="radio" name="teachers_knowledge" value="4" id="4">
+                                        <label
+                                                for="4">☆</label> <input type="radio" name="teachers_knowledge"
+                                                                         value="3"
+                                                                         id="3"><label
+                                            for="3">☆</label> <input type="radio" name="teachers_knowledge" value="2"
+                                                                     id="2"><label
+                                            for="2">☆</label> <input type="radio" name="teachers_knowledge" value="1"
+                                                                     id="1"><label
+                                            title="Очень плохо"
+                                            for="1">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение преподавателей
+                                        понятно объяснять свои предметы</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="teachers_explaining" value="5" id="5a"> <label
+                                            title="Очень хорошо"
+                                            for="5a">☆</label>
+                                        <input type="radio" name="teachers_explaining" value="4" id="4a"
+                                        >
+                                        <label
+                                                for="4a">☆</label> <input type="radio" name="teachers_explaining"
+                                                                          value="3"
+                                                                          id="3a"><label
+                                            for="3a">☆</label> <input type="radio" name="teachers_explaining" value="2"
+                                                                      id="2a"><label
+                                            for="2a">☆</label> <input type="radio" name="teachers_explaining" value="1"
+                                                                      id="1a"><label
+                                            title="Очень плохо"
+                                            for="1a">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Знание мастеров своего
+                                        предмета</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="masters_knowledge" value="5" id="5b"> <label
+                                            title="Очень хорошо"
+                                            for="5b">☆</label>
+                                        <input type="radio" name="masters_knowledge" value="4" id="4b"
+                                        >
+                                        <label
+                                                for="4b">☆</label> <input type="radio" name="masters_knowledge"
+                                                                          value="3"
+                                                                          id="3b"><label
+                                            for="3b">☆</label> <input type="radio" name="masters_knowledge" value="2"
+                                                                       id="2b"><label
+                                            for="2b">☆</label> <input type="radio" name="masters_knowledge" value="1"
+                                                                      id="1b"><label
+                                            title="Очень плохо"
+                                            for="1b">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение мастеров понятно
+                                        объяснять
+                                        свои предметы</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="masters_explaining" value="5" id="5c"> <label
+                                            title="Очень хорошо"
+                                            for="5c">☆</label>
+                                        <input type="radio" name="masters_explaining" value="4" id="4c"
+                                        >
+                                        <label
+                                                for="4c">☆</label> <input type="radio" name="masters_explaining"
+                                                                         value="3"
+                                                                         id="3c"><label
+                                            for="3c">☆</label> <input type="radio" name="masters_explaining" value="2"
+                                                                     id="2c"><label
+                                            for="2c">☆</label> <input type="radio" name="masters_explaining" value="1"
+                                                                     id="1c"><label
+                                            title="Очень плохо"
+                                            for="1c">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Работу кураторa </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="curators_work" value="5" id="5d"> <label
+                                            title="Очень хорошо"
+                                            for="5d">☆</label>
+                                        <input type="radio" name="curators_work" value="4" id="4d"
+                                        >
+                                        <label
+                                                for="4d">☆</label> <input type="radio" name="curators_work" value="3"
+                                                                         id="3d"><label
+                                            for="3d">☆</label> <input type="radio" name="curators_work" value="2" id="2d"><label
+                                            for="2d">☆</label> <input type="radio" name="curators_work" value="1" id="1d"><label
+                                            title="Очень плохо"
+                                            for="1d">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
-                        <div class="row form-group">
 
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
-
-
-                            </div>
-                        </div>
-                        <div class="row form-group">
-
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
-
-
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Знание мастеров своего предмета</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
-
-                                <div class="rating" style="width: 25px height: 15px">
-
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Умение мастеров понятно объяснять свои предметы</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
-
-                                <div class="rating" style="width: 25px height: 15px">
-
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Работу кураторa </label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
-
-                                <div class="rating" style="width: 25px height: 15px">
-
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
 
                     </fieldset>
                     <fieldset class="border p-4 ">
-                        <legend class="w-auto"><h5>Как бы Вы оценили следующие элементы, связанные с подготовкой к трудоустройству?</h5>
+                        <legend class="w-auto"><h5>Как бы Вы оценили следующие элементы, связанные с подготовкой к
+                            трудоустройству?</h5>
                         </legend>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Подготовка к трудовой деятельности</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
 
-                                <div class="rating" style="width: 25px height: 15px">
+                                    <label class="text-black col-form-label" for="lname">Подготовка к трудовой
+                                        деятельности</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Соответствие учебного процесса практическим требованиям на рабочем месте</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                                        <input type="radio" name="ready" value="5" id="5e"> <label title="Очень хорошо"
+                                                                                                   for="5e">☆</label>
+                                        <input type="radio" name="ready" value="4" id="4e"
+                                        >
+                                        <label
+                                                for="4e">☆</label> <input type="radio" name="ready" value="3"
+                                                                         id="3e"><label
+                                            for="3e">☆</label> <input type="radio" name="ready" value="2" id="2e"><label
+                                            for="2e">☆</label> <input type="radio" name="ready" value="1" id="1e"><label
+                                            title="Очень плохо"
+                                            for="1e">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
 
-                                <div class="rating" style="width: 25px height: 15px">
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Соответствие учебного процесса
+                                        практическим требованиям на рабочем месте</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Практический опыт преподавательского состава</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                                        <input type="radio" name="rating" value="5" id="5u"> <label title="Очень хорошо"
+                                                                                                   for="5u">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4u"
+                                        >
+                                        <label
+                                                for="4u">☆</label> <input type="radio" name="rating" value="3"
+                                                                         id="3u"><label
+                                            for="3u">☆</label> <input type="radio" name="rating" value="2" id="2u"><label
+                                            for="2u">☆</label> <input type="radio" name="rating" value="1" id="1u"><label
+                                            title="Очень плохо"
+                                            for="1u">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Практический опыт
+                                        преподавательского состава</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                <div class="rating" style="width: 25px height: 15px">
+                                        <input type="radio" name="skills" value="5" id="5f"> <label title="Очень хорошо"
+                                                                                                   for="5f">☆</label>
+                                        <input type="radio" name="skills" value="4" id="4f"
+                                        >
+                                        <label
+                                                for="4f">☆</label> <input type="radio" name="skills" value="3"
+                                                                         id="3f"><label
+                                            for="3f">☆</label> <input type="radio" name="skills" value="2" id="2f"><label
+                                            for="2f">☆</label> <input type="radio" name="skills" value="1" id="1f"><label
+                                            title="Очень плохо"
+                                            for="1f">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Взаимосвязь между теорией и
+                                        практикой</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Взаимосвязь между теорией и практикой</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                                        <input type="radio" name="connection" value="5" id="5g"> <label title="Очень хорошо"
+                                                                                                   for="5g">☆</label>
+                                        <input type="radio" name="connection" value="4" id="4g"
+                                        >
+                                        <label
+                                                for="4g">☆</label> <input type="radio" name="connection" value="3"
+                                                                         id="3g"><label
+                                            for="3g">☆</label> <input type="radio" name="connection" value="2" id="2g"><label
+                                            for="2g">☆</label> <input type="radio" name="connection" value="1" id="1g"><label
+                                            title="Очень плохо"
+                                            for="1g">☆</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Насколько учебная программа
+                                        ориентирована на практику</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                <div class="rating" style="width: 25px height: 15px">
+                                        <input type="radio" name="oriented" value="5" id="5h"> <label title="Очень хорошо"
+                                                                                                   for="5h">☆</label>
+                                        <input type="radio" name="oriented" value="4" id="4h"
+                                        >
+                                        <label
+                                                for="4h">☆</label> <input type="radio" name="oriented" value="3"
+                                                                         id="3h"><label
+                                            for="3h">☆</label> <input type="radio" name="oriented" value="2" id="2h"><label
+                                            for="2h">☆</label> <input type="radio" name="oriented" value="1" id="1h"><label
+                                            title="Очень плохо"
+                                            for="1h">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Помощь в поиске работы</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Насколько учебная программа ориентирована на практику</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                                        <input type="radio" name="help" value="5" id="5i"> <label title="Очень хорошо"
+                                                                                                   for="5i">☆</label>
+                                        <input type="radio" name="help" value="4" id="4i"
+                                        >
+                                        <label
+                                                for="4">☆</label> <input type="radio" name="help" value="3"
+                                                                         id="3i"><label
+                                            for="3i">☆</label> <input type="radio" name="help" value="2" id="2i"><label
+                                            for="2i">☆</label> <input type="radio" name="help" value="1" id="1i"><label
+                                            title="Очень плохо"
+                                            for="1i">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                                <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-8">
-                                <label class="text-black col-form-label" for="lname">Помощь в поиске работы</label>
-                            </div>
-                            <div class="col-lg-3" style="display: flex;justify-content: space-between ">
+                    </fieldset>
+                    <fieldset class="border p-4 ">
+                        <legend class="w-auto"><h5>В какой степени Вы приобрели следующие навыки / знания к моменту
+                            окончания обучения?</h5>
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
 
-                                <div class="rating" style="width: 25px height: 15px">
+                                    <label class="text-black col-form-label" for="lname">Профессиональные навыки в своей
+                                        специальности</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
 
-                                    <input type="radio" name="rating" value="5" id="5" title="Очень хорошо"> <label
-                                        for="5">☆</label> <input type="radio" name="rating" value="4" id="4"
-                                                                 >
-                                    <label
-                                        for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
-                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
-                                        for="2">☆</label> <input type="radio" name="rating" value="1" id="1" ><label title="Очень плохо"
-                                        for="1">☆</label>
-                                </div>
+                                        <input type="radio" name="professional_skills" value="5" id="5j"> <label
+                                            title="В высокой степени"
+                                            for="5j">☆</label>
+                                        <input type="radio" name="professional_skills" value="4" id="4j"
+                                        >
+                                        <label
+                                                for="4j">☆</label> <input type="radio" name="professional_skills" value="3j"
+                                                                         id="3j"><label
+                                            for="3j">☆</label> <input type="radio" name="professional_skills" value="2" id="2j"><label
+                                            for="2j">☆</label> <input type="radio" name="professional_skills" value="1" id="1j"><label
+                                            title="Совсем нет"
+                                            for="1j">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность развивать новые
+                                        идеи и решения</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="ability_improve" value="5" id="5k"> <label
+                                            title="В высокой степени"
+                                            for="5k">☆</label>
+                                        <input type="radio" name="ability_improve" value="4" id="4k"
+                                        >
+                                        <label
+                                                for="4k">☆</label> <input type="radio" name="ability_improve" value="3"
+                                                                         id="3k"><label
+                                            for="3k">☆</label> <input type="radio" name="ability_improve" value="2" id="2k"><label
+                                            for="2k">☆</label> <input type="radio" name="ability_improve" value="1" id="1k"><label
+                                            title="Совсем нет"
+                                            for="1k">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность легко
+                                        адаптироваться к меняющимся условиям </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="easy_adaptation" value="5" id="5l"> <label
+                                            title="В высокой степени"
+                                            for="5l">☆</label>
+                                        <input type="radio" name="easy_adaptation" value="4" id="4l"
+                                        >
+                                        <label
+                                                for="4l">☆</label> <input type="radio" name="easy_adaptation" value="3"
+                                                                         id="3l"><label
+                                            for="3l">☆</label> <input type="radio" name="easy_adaptation" value="2" id="2l"><label
+                                            for="2l">☆</label> <input type="radio" name="easy_adaptation" value="1" id="1l"><label
+                                            title="Совсем нет"
+                                            for="1l">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность эффективно
+                                        организовать свое рабочее время</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="organization" value="5" id="5m"> <label
+                                            title="В высокой степени"
+                                            for="5m">☆</label>
+                                        <input type="radio" name="organization" value="4" id="4m"
+                                        >
+                                        <label
+                                                for="4m">☆</label> <input type="radio" name="organization" value="3"
+                                                                         id="3m"><label
+                                            for="3m">☆</label> <input type="radio" name="organization" value="2" id="2m"><label
+                                            for="2m">☆</label> <input type="radio" name="organization" value="1" id="1m"><label
+                                            title="Совсем нет"
+                                            for="1m">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение общаться</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="talking_skills" value="5" id="5n"> <label
+                                            title="В высокой степени"
+                                            for="5n">☆</label>
+                                        <input type="radio" name="talking_skills" value="4" id="4n"
+                                        >
+                                        <label
+                                                for="4n">☆</label> <input type="radio" name="talking_skills" value="3"
+                                                                         id="3n"><label
+                                            for="3n">☆</label> <input type="radio" name="talking_skills" value="2" id="2n"><label
+                                            for="2n">☆</label> <input type="radio" name="talking_skills" value="1" id="1n"><label
+                                            title="Совсем нет"
+                                            for="1n">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Oтветственность</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="responsibility" value="5" id="5o"> <label
+                                            title="В высокой степени"
+                                            for="5o">☆</label>
+                                        <input type="radio" name="responsibility" value="4" id="4o"
+                                        >
+                                        <label
+                                                for="4o">☆</label> <input type="radio" name="responsibility" value="3"
+                                                                         id="3o"><label
+                                            for="3o">☆</label> <input type="radio" name="responsibility" value="2" id="2o"><label
+                                            for="2o">☆</label> <input type="radio" name="responsibility" value="1" id="1o"><label
+                                            title="Совсем нет"
+                                            for="1o">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение решать проблемы</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="solving" value="5" id="5p"> <label
+                                            title="В высокой степени"
+                                            for="5p">☆</label>
+                                        <input type="radio" name="solving" value="4" id="4p"
+                                        >
+                                        <label
+                                                for="4p">☆</label> <input type="radio" name="solving" value="3"
+                                                                         id="3p"><label
+                                            for="3p">☆</label> <input type="radio" name="solving" value="2" id="2p"><label
+                                            for="2p">☆</label> <input type="radio" name="solving" value="1" id="1p"><label
+                                            title="Совсем нет"
+                                            for="1p">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение применять теорию на
+                                        практике</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="theory_using" value="5" id="5r"> <label
+                                            title="В высокой степени"
+                                            for="5r">☆</label>
+                                        <input type="radio" name="theory_using" value="4" id="4r"
+                                        >
+                                        <label
+                                                for="4r">☆</label> <input type="radio" name="theory_using" value="3"
+                                                                         id="3r"><label
+                                            for="3r">☆</label> <input type="radio" name="theory_using" value="2" id="2r"><label
+                                            for="2r">☆</label> <input type="radio" name="theory_using" value="1" id="1r"><label
+                                            title="Совсем нет"
+                                            for="1r">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность продуктивно
+                                        работать с другими</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+
+                                        <input type="radio" name="networking" value="5" id="5s"> <label
+                                            title="В высокой степени"
+                                            for="5s">☆</label>
+                                        <input type="radio" name="networking" value="4" id="4s"
+                                        >
+                                        <label
+                                                for="4s">☆</label> <input type="radio" name="networking" value="3"
+                                                                         id="3s"><label
+                                            for="3s">☆</label> <input type="radio" name="networking" value="2" id="2s"><label
+                                            for="2s">☆</label> <input type="radio" name="networking" value="1" id="1s"><label
+                                            title="Совсем нет"
+                                            for="1s">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Если Вы Вам снова пришлось выбирaть, Вы бы выбрали нaше учебное
+                            заведение? процесса?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="repeat_study" value="No">Нет</label>
                             </div>
-                        </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="repeat_study" value="Doubt">Сомневаюсь</label>
+                            </div>
+                            <div class="form-check-inline ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="repeat_study" value="Yes">Да</label>
+                            </div>
+                            </tbody>
+                        </table>
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Если бы Вам снова пришлось выбирaть, Вы бы выбрали ту же специальность?
+                            процесса?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="same_major" value="No">Нет</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="same_major" value="Doubt">Сомневаюсь</label>
+                            </div>
+                            <div class="form-check-inline ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="same_major" value="Yes">Да</label>
+                            </div>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Вы удовлетворены своим обучением?</legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="satisfaction" value="No">Нет</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="satisfaction" value="Doubt">Частично</label>
+                            </div>
+                            <div class="form-check-inline ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="satisfaction" value="Yes">Да
+                                    полностью</label>
+                            </div>
+                            </tbody>
+                        </table>
+
 
                     </fieldset>
 
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Когда Вы впервые начали работать после окончания нaшего учебного заведения?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="0">До окончания учебного заведени
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="1">Меньше 1 месяца после окончания
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="2">От 1 до 3 месяцев после окончания
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="3">От 3 до 6 месяцев после окончания
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="4">От 6 до 9 месяцев после окончания
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="start_working" value="5">От 9 до 12 месяцев после окончания
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="workstart_working_search" value="6">Я никогда не работал(-а) после окончания
+                                </label>
+                            </div>
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto">С какими проблемами Вы сталкивались в процессе поиска работы?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Мои навыки не соответствуют
+                                        требованиям
+                                        работодателей</label>
+                                </td>
+                                <td>
+                                    <div class="ratingg" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="matching" value="5" id="5t"> <label
+                                            title="В высокой степени"
+                                            for="5t">☐</label>
+                                        <input type="radio" name="matching" value="4" id="4t">
+                                        <label
+                                                for="4t">☐</label> <input type="radio" name="matching" value="3"
+                                                                         id="3t"><label
+                                            for="3t">‎☐</label> <input type="radio" name="matching" value="2"
+                                                                      id="2t"><label
+                                            for="2t">‎☐</label> <input type="radio" name="matching" value="1"
+                                                                      id="1t"><label
+                                            title="Совсем нет"
+                                            for="1t">‎☐</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Недостаточность практического
+                                        опыта</label>
+                                </td>
+                                <td>
+                                    <div class="ratingg" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="lack" value="5" id="5v"> <label
+                                            title="В высокой степени"
+                                            for="5v">☐</label>
+                                        <input type="radio" name="lack" value="4" id="4v">
+                                        <label
+                                                for="4v">☐</label> <input type="radio" name="lack" value="3"
+                                                                         id="3v"><label
+                                            for="3v">‎☐</label> <input type="radio" name="lack" value="2"
+                                                                      id="2v"><label
+                                            for="2v">‎☐</label> <input type="radio" name="lack" value="1"
+                                                                      id="1v"><label
+                                            title="Совсем нет"
+                                            for="1v">‎☐</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Нехватка вакансий по моей
+                                        специальности на
+                                        местном рынке труда</label>
+                                </td>
+                                <td>
+                                    <div class="ratingg" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="vacancy_lack" value="5" id="5w"> <label
+                                            title="В высокой степени"
+                                            for="5w">☐</label>
+                                        <input type="radio" name="vacancy_lack" value="4" id="4w">
+                                        <label
+                                                for="4w">☐</label> <input type="radio" name="vacancy_lack" value="3"
+                                                                         id="3w"><label
+                                            for="3w">‎☐</label> <input type="radio" name="vacancy_lack" value="2"
+                                                                      id="2w"><label
+                                            for="2w">‎☐</label> <input type="radio" name="vacancy_lack" value="1"
+                                                                      id="1w"><label
+                                            title="Совсем нет"
+                                            for="1w">‎☐</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Низкая зарплата</label>
+                                </td>
+                                <td>
+                                    <div class="ratingg" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="low_salary" value="5" id="5x"> <label
+                                            title="В высокой степени"
+                                            for="5x">☐</label>
+                                        <input type="radio" name="low_salary" value="4" id="4x">
+                                        <label
+                                                for="4x">☐</label> <input type="radio" name="low_salary" value="3"
+                                                                         id="3x"><label
+                                            for="3x">‎☐</label> <input type="radio" name="low_salary" value="2"
+                                                                      id="2x"><label
+                                            for="2x">‎☐</label> <input type="radio" name="low_salary" value="1"
+                                                                      id="1x"><label
+                                            title="Совсем нет   "
+                                            for="1x">‎☐</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Нет денег для собственного
+                                        малого бизнеса</label>
+                                </td>
+                                <td>
+                                    <div class="ratingg" style="width: 25px height: 10px">
+
+                                        <input type="radio" name="no_money" value="5" id="5y"> <label
+                                            title="В высокой степени"
+                                            for="5y">☐</label>
+                                        <input type="radio" name="no_money" value="4" id="4y">
+                                        <label
+                                                for="4y">☐</label> <input type="radio" name="no_money" value="3"
+                                                                         id="3y"><label
+                                            for="3y">‎☐</label> <input type="radio" name="no_money" value="2"
+                                                                      id="2y"><label
+                                            for="2y">‎☐</label> <input type="radio" name="no_money" value="1"
+                                                                      id="1y"><label
+                                            title="Совсем нет"
+                                            for="1y">‎☐</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Как Вы искали/ ищете свою первую работу после окончания учебного
+                            заведения?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="0">Просматривая
+                                    рекламу/объявления (например: газета, интернет, извещение)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="1">C помощью учебного
+                                    заведения (например, через центр карьеры)
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="2">Через службу занятости
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="3">Через
+                                    знакомых/родственников/ родителей
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="4">Самостоятельная заявка
+                                    (рассылка резюме)
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="work_search" value="5">Другое (пожалуйста,
+                                    уточните)
+                                </label>
+                            </div>
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Какой метод поиска первой работы был самым успешным?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="1">Просматривая
+                                    рекламу/объявления (например: газета, интернет, извещение)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="2">C помощью учебного
+                                    заведения (например, через центр карьеры)
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="3">Через службу занятости
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="4">Через
+                                    знакомых/родственников/ родителей
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="5">Самостоятельная заявка
+                                    (рассылка резюме)
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="success_search" value="6">Другое (пожалуйста,
+                                    уточните)
+                                </label>
+                            </div>
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-4 ">
+                        <legend class="w-auto"><h5>В какой степени востребованы следующие навыки / знания на Вашей
+                            нынешней работе? </h5>
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <td>
+
+                                    <label class="text-black col-form-label" for="lname">Профессиональные навыки в своей
+                                        специальности</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="own_skills" value="5" id="5z"> <label
+                                            title="В высокой степени"
+                                            for="5z">☆</label>
+                                        <input type="radio" name="own_skills" value="4" id="4z"
+                                        >
+                                        <label
+                                                for="4z">☆</label> <input type="radio" name="own_skills" value="3"
+                                                                         id="3z"><label
+                                            for="3z">☆</label> <input type="radio" name="own_skills" value="2" id="2z"><label
+                                            for="2z">☆</label> <input type="radio" name="own_skills" value="1" id="1z"><label
+                                            title="Совсем нет"
+                                            for="1z">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность развивать новые
+                                        идеи и решения</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="new_idea" value="5" id="5aa"> <label
+                                            title="В высокой степени"
+                                            for="5aa">☆</label>
+                                        <input type="radio" name="new_idea" value="4" id="4aa"
+                                        >
+                                        <label
+                                                for="4aa">☆</label> <input type="radio" name="new_idea" value="3"
+                                                                         id="3aa"><label
+                                            for="3aa">☆</label> <input type="radio" name="new_idea" value="2" id="2aa"><label
+                                            for="2aa">☆</label> <input type="radio" name="new_idea" value="1" id="1aa"><label
+                                            title="Совсем нет"
+                                            for="1aa">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность легко
+                                        адаптироваться к меняющимся условиям </label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="adapt" value="5" id="5bb"> <label
+                                            title="В высокой степени"
+                                            for="5bb">☆</label>
+                                        <input type="radio" name="adapt" value="4" id="4bb"
+                                        >
+                                        <label
+                                                for="4bb">☆</label> <input type="radio" name="adapt" value="3"
+                                                                         id="3bb"><label
+                                            for="3bb">☆</label> <input type="radio" name="adapt" value="2" id="2bb"><label
+                                            for="2bb">☆</label> <input type="radio" name="adapt" value="1" id="1bb"><label
+                                            title="Совсем нет"
+                                            for="1bb">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Способность эффективно
+                                        организовать свое рабочее время</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="time_man" value="5" id="5cc"> <label
+                                            title="В высокой степени"
+                                            for="5cc">☆</label>
+                                        <input type="radio" name="time_man" value="4" id="4cc"
+                                        >
+                                        <label
+                                                for="4cc">☆</label> <input type="radio" name="time_man" value="3"
+                                                                         id="3cc"><label
+                                            for="3cc">☆</label> <input type="radio" name="time_man" value="2" id="2cc"><label
+                                            for="2cc">☆</label> <input type="radio" name="time_man" value="1" id="1cc"><label
+                                            title="Совсем нет"
+                                            for="1cc">☆</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение общаться</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="talking_skills_" value="5" id="5dd"> <label
+                                            title="В высокой степени"
+                                            for="5dd">☆</label>
+                                        <input type="radio" name="talking_skills_" value="4" id="4dd"
+                                        >
+                                        <label
+                                                for="4dd">☆</label> <input type="radio" name="talking_skills_" value="3"
+                                                                         id="3dd"><label
+                                            for="3dd">☆</label> <input type="radio" name="talking_skills_" value="2" id="2dd"><label
+                                            for="2dd">☆</label> <input type="radio" name="talking_skills_" value="1" id="1dd"><label
+                                            title="Совсем нет"
+                                            for="1dd">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Oтветственность</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="responsibility_" value="5" id="5ee"> <label
+                                            title="В высокой степени"
+                                            for="5ee">☆</label>
+                                        <input type="radio" name="responsibility_" value="4" id="4ee"
+                                        >
+                                        <label
+                                                for="4ee">☆</label> <input type="radio" name="responsibility_" value="3"
+                                                                         id="3ee"><label
+                                            for="3ee">☆</label> <input type="radio" name="responsibility_" value="2" id="2ee"><label
+                                            for="2ee">☆</label> <input type="radio" name="responsibility_" value="1" id="1ee"><label
+                                            title="Совсем нет"
+                                            for="1ee">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение решать проблемы</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="solving_" value="5" id="5ff"> <label
+                                            title="В высокой степени"
+                                            for="5ff">☆</label>
+                                        <input type="radio" name="solving_" value="4" id="4ff"
+                                        >
+                                        <label
+                                                for="4ff">☆</label> <input type="radio" name="solving_" value="3"
+                                                                         id="3ff"><label
+                                            for="3ff">☆</label> <input type="radio" name="solving_" value="2" id="2ff"><label
+                                            for="2ff">☆</label> <input type="radio" name="solving_" value="1" id="1ff"><label
+                                            title="Совсем нет"
+                                            for="1ff">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-black col-form-label" for="lname">Умение применять теорию на
+                                        практике</label>
+                                </td>
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="using_" value="5" id="5gg"> <label
+                                            title="В высокой степени"
+                                            for="5gg">☆</label>
+                                        <input type="radio" name="using_" value="4" id="4gg"
+                                        >
+                                        <label
+                                                for="4gg">☆</label> <input type="radio" name="rausing_ting" value="3"
+                                                                         id="3gg"><label
+                                            for="3gg">☆</label> <input type="radio" name="using_" value="2" id="2gg"><label
+                                            for="2gg">☆</label> <input type="radio" name="using_" value="1" id="1gg"><label
+                                            title="Совсем нет"
+                                            for="1gg">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-4 ">
+                        <legend class="w-auto"><h5>В какой степени Вы используете на нынешней работе знания и навыки,
+                            приобретенные Вами во время обучения? </h5>
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+
+                                <td>
+                                    <div class="rating" style="width: 25px height: 15px">
+
+                                        <input type="radio" name="skills_using_" value="5" id="5hh"> <label
+                                            title="В высокой степени"
+                                            for="5hh">☆</label>
+                                        <input type="radio" name="skills_using_" value="4" id="4hh"
+                                        >
+                                        <label
+                                                for="4hh">☆</label> <input type="radio" name="skills_using_" value="3"
+                                                                         id="3hh"><label
+                                            for="3hh">☆</label> <input type="radio" name="skills_using_" value="2" id="2hh"><label
+                                            for="2hh">☆</label> <input type="radio" name="skills_using_" value="1" id="1hh"><label
+                                            title="Совсем нет"
+                                            for="1hh">☆</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Вы работаете по своей специальности?</legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="own_spec" value="1">Да, по своей специальности</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="own_spec" value="3">Да, по смежной специальности</label>
+                            </div>
+                            <div class="form-check-inline ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="own_spec" value="2">Нет, я работаю абсолютно по другой специальности</label>
+                            </div>
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Если Вы работаете не по своей специальности, то почему?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="1">Нехватка вакансий по
+                                    моей специальности
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="2">Мне не нравится моя
+                                    профессия
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="3">Низкая зарплата по моей
+                                    специальности
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="4">Не соответствовал/не
+                                    соответствовала требованиям работодателей
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="5"> Мои интересы
+                                    изменились
+
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="why_" value="6">Другое (пожалуйста,
+                                    уточните)
+                                </label>
+                            </div>
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> Поступили ли Вы на следующий уровень образования после окончания учебы в
+                            нашем учебном заведении?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="after_" value="1">Да, в магистратуру
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="after_" value="2">Да, в аспирантуру
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="after_" value="3"> Да, в ВУЗ, но бросил
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="after_" value="4"> Да, в вуз для получение второго высшего образования
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="after_" value="5">Нет
+                                </label>
+                            </div>
+
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3 ">
+                        <legend class="w-auto"> В какой стране вы работаете в данное время?
+                        </legend>
+                        <table class="table table-sm">
+                            <tbody>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="where_" value="1">Кыргызская Республика
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="where_" value="2">Российская Федерация
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="where_" value="3"> Казахстан
+                                </label>
+                            </div>
+                            <div class="form-check ">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="where_" value="4">Другое
+                                </label>
+                            </div>
+
+
+                            </tbody>
+                        </table>
+
+
+                    </fieldset>
 
                     <div class="row" style="margin-top: 5px">
                         <div class="col-md-12 ">
@@ -493,9 +1485,10 @@
 
     </div>
 </div>
+{% if message1 is not None %}
 <script>
 
-
+    alert('{{ message1 }}');
 </script>
-
+{% endif %}
 {% endblock content %}
