@@ -34,8 +34,8 @@
 <!-- /has child pages  -->
     {% endfor %}
 {% if request.user.is_authenticated %}
-        <li><a href="http://{{ request.META.HTTP_HOST }}/logout" class="nav-link">Выход {{user.first_name}}</a></li>
+        <li><a href="http://iarc-institute.org/logout" class="nav-link">Выход {{user.first_name}}</a></li>
         {% else %}
-        <li><a href="http://{{ request.META.HTTP_HOST }}/login" class="nav-link">Вход </a></li>
+        <li><a href="http://iarc-institute.org/login" class="nav-link">Вход </a></li>
         {% endif %}
 <!-- /end for child -->
