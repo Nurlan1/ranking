@@ -23,7 +23,7 @@
         <div class="dropdown-menu">
             {% for category in categories %}
             {% if category.Max_value %}
-            <a class="dropdown-item" href="http://{{ request.get_host }}/en/ranking/?q=y{{year}}&c=l{{category.Id}}">{{category.Name}}</a>
+            <a class="dropdown-item" href="http://iarc-institute.org/en/ranking/?q=y{{year}}&c=l{{category.Id}}">{{category.Name}}</a>
             {% endif %}
             {% endfor %}
         </div>
